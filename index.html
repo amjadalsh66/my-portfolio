@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>Amjad Alshahri | Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Body */
+    body {
+      font-family: 'Tajawal', 'Poppins', sans-serif;
+      background: #f8f5ff;
+      color: #2d2d2d;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+
+    /* Navbar */
+    nav {
+      background: white;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(124,58,237,0.1);
+    }
+
+    /* Logo */
+    .logo { font-size: 20px; font-weight: 900; color: #7c3aed; font-family: 'Poppins', sans-serif; }
+
+    /* Nav links */
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+
+    .nav-links a {
+      color: #555;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    /* Nav hover */
+    .nav-links a:hover { color: #7c3aed; }
+
+    /* Language buttons */
+    .lang-btns { display: flex; gap: 8px; }
+
+    .lang-btns button {
+      background: transparent;
+      border: 2px solid #7c3aed;
+      color: #7c3aed;
+      padding: 6px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+
+    /* Language button hover */
+    .lang-btns button:hover { background: #7c3aed; color: white; }
+
+    /* Hero */
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 40px;
+      background: linear-gradient(135deg, #faf5ff, #ede9fe, #ddd6fe);
+    }
+
+    /* Welcome tag */
+    .hero-tag {
+      background: #ede9fe;
+      color: #7c3aed;
+      padding: 6px 20px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    /* Hero name */
+    header h1 { font-size: 56px; font-weight: 900; color: #4c1d95; margin-bottom: 20px; }
+
+    /* Hero text */
+    header p { font-size: 18px; color: #6b7280; max-width: 650px; line-height: 1.9; margin-bottom: 10px; }
+
+    /* Hero buttons */
+    .hero-btns { display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap; justify-content: center; }
+
+    /* Primary button */
+    .btn-primary {
+      background: #7c3aed;
+      color: white;
+      padding: 14px 32px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(124,58,237,0.3);
+    }
+
+    /* Primary button hover */
+    .btn-primary:hover { background: #6d28d9; transform: translateY(-2px); }
+
+    /* Outline button */
+    .btn-outline {
+      background: transparent;
+      color: #7c3aed;
+      padding: 14px 32px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      border: 2px solid #7c3aed;
+      transition: all 0.3s;
+    }
+
+    /* Outline button hover */
+    .btn-outline:hover { background: #7c3aed; color: white; }
+
+    /* Sections */
+    section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+
+    /* Section heading */
+    section h2 {
+      font-size: 36px;
+      font-weight: 900;
+      color: #4c1d95;
+      margin-bottom: 48px;
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Heading underline */
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      right: 0;
+      width: 60px;
+      height: 4px;
+      background: #7c3aed;
+      border-radius: 2px;
+    }
+
+    /* About bio */
+    .about-text { font-size: 17px; line-height: 2; color: #4b5563; max-width: 800px; margin-bottom: 40px; }
+
+    /* Skills row */
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* Skill pill */
+    .skill-tag {
+      background: #ede9fe;
+      color: #7c3aed;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+
+    /* Skill pill hover */
+    .skill-tag:hover { background: #7c3aed; color: white; }
+
+    /* 3-column grid */
+    .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+    /* Certificate card */
+    .card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 24px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+
+    /* Card hover */
+    .card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(124,58,237,0.15); border-color: #c4b5fd; }
+
+    /* Card title */
+    .card h3 { font-size: 16px; color: #1f2937; margin-bottom: 10px; font-weight: 700; }
+
+    /* Card text */
+    .card p { font-size: 13px; color: #9ca3af; margin-bottom: 4px; }
+
+    /* Project card */
+    .project-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 28px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+
+    /* Project card hover */
+    .project-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(124,58,237,0.15); border-color: #c4b5fd; }
+
+    /* Project emoji */
+    .project-card .proj-icon { font-size: 36px; margin-bottom: 16px; }
+
+    /* Project title */
+    .project-card h3 { font-size: 18px; color: #4c1d95; font-weight: 700; margin-bottom: 10px; }
+
+    /* Project description */
+    .project-card p { font-size: 14px; color: #6b7280; line-height: 1.8; margin-bottom: 14px; }
+
+    /* Tech tags */
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+
+    /* Single tech tag */
+    .tech-tag { background: #f3f4f6; color: #374151; font-size: 12px; padding: 4px 12px; border-radius: 10px; font-weight: 600; }
+
+    /* Play button link */
+    .play-btn {
+      display: inline-block;
+      background: #7c3aed;
+      color: white;
+      padding: 8px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all 0.3s;
+      margin-top: 8px;
+    }
+
+    /* Play button hover */
+    .play-btn:hover { background: #6d28d9; transform: translateY(-2px); }
+
+    /* Contact */
+    .contact-section {
+      background: linear-gradient(135deg, #4c1d95, #7c3aed);
+      border-radius: 24px;
+      padding: 60px 40px;
+      text-align: center;
+      margin: 0 40px 80px;
+    }
+
+    /* Contact text */
+    .contact-section p { color: rgba(255,255,255,0.8); font-size: 16px; margin-bottom: 40px; }
+
+    /* Contact links row */
+    .contact-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+
+    /* Single contact link */
+    .contact-link {
+      background: white;
+      color: #7c3aed;
+      padding: 14px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      transition: all 0.3s;
+    }
+
+    /* Contact link hover */
+    .contact-link:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+
+    /* Footer */
+    footer { background: #1f2937; text-align: center; padding: 28px; color: #9ca3af; font-size: 14px; width: 100%; margin-top: auto; }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 32px; }
+      nav { flex-direction: column; gap: 12px; padding: 16px 20px; }
+      section { padding: 60px 20px; }
+      .contact-section { margin: 0 20px 60px; padding: 40px 20px; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Portfolio</div>
+
+    <ul class="nav-links">
+      <li><a href="#about" data-ar="من أنا" data-en="About Me">من أنا</a></li>
+      <li><a href="#projects" data-ar="المشاريع" data-en="Projects">المشاريع</a></li>
+      <li><a href="#games" data-ar="الألعاب" data-en="Games">الألعاب</a></li>
+      <li><a href="#certificates" data-ar="الشهادات" data-en="Certificates">الشهادات</a></li>
+      <li><a href="#contact" data-ar="للتواصل" data-en="Contact">للتواصل</a></li>
+    </ul>
+
+    <div class="lang-btns">
+      <button onclick="setLang('ar')">عربي</button>
+      <button onclick="setLang('en')">English</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header>
+
+    <div class="hero-tag"
+      data-ar="مرحباً بك في موقعي"
+      data-en="Welcome to my portfolio">
+      مرحباً بك في موقعي
+    </div>
+
+    <h1
+      data-ar="أهلاً! أنا أمجاد محمد الشهري"
+      data-en="Hi! I'm Amjad Mohammed Alshahri">
+      أهلاً! أنا أمجاد محمد الشهري
+    </h1>
+
+    <p
+      data-ar="خريجة علوم حاسب وأتطلع للانضمام لبيئة عمل تقنية تُنمّي مهاراتي ✨"
+      data-en="A Computer Science graduate looking to join a tech environment that develops my skills ✨">
+      خريجة علوم حاسب وأتطلع للانضمام لبيئة عمل تقنية تُنمّي مهاراتي ✨
+    </p>
+
+    <p
+      data-ar="التخصص: علوم الحاسب | التخصص الفرعي: البرمجة وعلوم الحاسب"
+      data-en="Major: Computer Science | Minor: Programming & Computer Science">
+      التخصص: علوم الحاسب | التخصص الفرعي: البرمجة وعلوم الحاسب
+    </p>
+
+    <div class="hero-btns">
+
+      <a href="#projects" class="btn-primary"
+        data-ar="شوف أعمالي"
+        data-en="View My Work">
+        شوف أعمالي
+      </a>
+
+      <a href="#contact" class="btn-outline"
+        data-ar="أبحث عن فرصة لتطوير مهاراتي"
+        data-en="Contact Me">
+        أبحث عن فرصة لتطوير مهاراتي
+      </a>
+
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about">
+
+    <h2 data-ar="من أنا؟" data-en="About Me">من أنا؟</h2>
+
+    <!-- Bio -->
+    <p class="about-text"
+      data-ar="خريجة علوم حاسب، حاصلة على لقب سفيرة المملكة في برنامج جلوب البيئي عام 2015، وشهادتين من أكاديمية طويق في الحوسبة السحابية، وتصميم وبرمجة الألعاب. أمتلك خبرة في أكثر من مجال تشمل أخصائي علاقات عامة، مساعد إداري، ودعم تقنية المعلومات. أسعى للتطوير المهني والبحث عن فرص تُنمّي مهاراتي ✨."
+      data-en="A Computer Science graduate, honored as Saudi Arabia's Ambassador in the GLOBE Program 2015, and holder of two certifications from Tuwaiq Academy in Cloud Computing and Game Design & Programming. I have diverse experience as a Public Relations Specialist, Administrative Assistant, and IT Support. I'm seeking professional growth and opportunities to develop my skills ✨.">
+      خريجة علوم حاسب، حاصلة على لقب سفيرة المملكة في برنامج جلوب البيئي عام 2015، وشهادتين من أكاديمية طويق في الحوسبة السحابية، وتصميم وبرمجة الألعاب. أمتلك خبرة في أكثر من مجال تشمل أخصائي علاقات عامة، مساعد إداري، ودعم تقنية المعلومات. أسعى للتطوير المهني والبحث عن فرص تُنمّي مهاراتي ✨.
+    </p>
+
+   <!-- Soft skills heading -->
+    <h3 style="color:#7c3aed; margin-bottom:20px; font-size:22px;"
+      data-ar="المهارات الشخصية"
+      data-en="Soft Skills">
+      المهارات الشخصية
+    </h3>
+
+    <!-- Soft skills heading -->
+    <h3 style="color:#7c3aed; margin-bottom:20px; font-size:22px;"
+      data-ar="المهارات الشخصية"
+      data-en="Soft Skills">
+      المهارات الشخصية
+    </h3>
+
+    <!-- Soft skills - 3 per row -->
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:40px;">
+
+      <span class="skill-tag" style="text-align:center;"
+        data-ar="التواصل الفعّال"
+        data-en="Effective Communication">
+        التواصل الفعّال
+      </span>
+
+      <span class="skill-tag" style="text-align:center;"
+        data-ar="العمل ضمن فريق"
+        data-en="Teamwork">
+        العمل ضمن فريق
+      </span>
+
+      <span class="skill-tag" style="text-align:center;"
+        data-ar="حل المشكلات"
+        data-en="Problem Solving">
+        حل المشكلات
+      </span>
+
+      <span class="skill-tag" style="text-align:center;"
+        data-ar="التكيّف مع بيئة العمل"
+        data-en="Adaptability">
+        التكيّف مع بيئة العمل
+      </span>
+
+      <span class="skill-tag" style="text-align:center;"
+        data-ar="التنظيم وإدارة المهام"
+        data-en="Organization & Task Management">
+        التنظيم وإدارة المهام
+      </span>
+
+      <span class="skill-tag" style="text-align:center;"
+        data-ar="التعلّم الذاتي والتطوير المستمر"
+        data-en="Self-Learning & Continuous Development">
+        التعلّم الذاتي والتطوير المستمر
+      </span>
+
+    </div>
+
+    <!-- Technical skills heading -->
+    <h3 style="color:#7c3aed; margin-bottom:20px; font-size:22px;"
+      data-ar="المهارات التقنية"
+      data-en="Technical Skills">
+      المهارات التقنية
+    </h3>
+
+    <!-- Technical skills - 3 per row -->
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
+
+      <span class="skill-tag" style="text-align:center;">Microsoft Office</span>
+      <span class="skill-tag" style="text-align:center;">IT Support</span>
+      <span class="skill-tag" style="text-align:center;">AI & Machine Learning</span>
+      <span class="skill-tag" style="text-align:center;">Cloud Computing</span>
+      <span class="skill-tag" style="text-align:center;">JavaScript</span>
+      <span class="skill-tag" style="text-align:center;">Unity</span>
+      <span class="skill-tag" style="text-align:center;">HTML</span>
+      <span class="skill-tag" style="text-align:center;">CSS</span>
+      <span class="skill-tag" style="text-align:center;">C#</span>
+
+    </div>
+
+    
+  <!-- Games -->
+  <section id="games">
+
+    <h2 data-ar="تصميم وبرمجة الألعاب" data-en="Game Design & Development">تصميم وبرمجة الألعاب</h2>
+
+    <div class="cards-grid">
+
+      <!-- Game 1: Silent Collision -->
+      <div class="project-card">
+        <div class="proj-icon">🎮</div>
+        <h3>Silent Collision</h3>
+        <p
+          data-ar="لعبة أكشن ثلاثية الأبعاد مبنية من الصفر تتضمن تفاعلات اللاعب والعدو، الحركة، نظام الصحة، بيئات غامرة، مؤثرات بصرية وصوتية، وواجهة مستخدم متجاوبة."
+          data-en="A complete 3D action game built from scratch with player-enemy interactions, movement, health systems, immersive environments, VFX, sound effects, and responsive UI.">
+          لعبة أكشن ثلاثية الأبعاد مبنية من الصفر تتضمن تفاعلات اللاعب والعدو، الحركة، نظام الصحة، بيئات غامرة، مؤثرات بصرية وصوتية، وواجهة مستخدم متجاوبة.
+        </p>
+        <div class="tech-tags">
+          <span class="tech-tag">Unity</span>
+          <span class="tech-tag">C#</span>
+          <span class="tech-tag">3D Design</span>
+        </div>
+        <a href="https://amjadals.itch.io/tuwaiq-projectamjad-alshehri" target="_blank" class="play-btn">🎮 Play on itch.io</a>
+      </div>
+
+      <!-- Game 2: Beneath The Waves -->
+      <div class="project-card">
+        <div class="proj-icon">🌊</div>
+        <h3>Beneath The Waves</h3>
+        <p
+          data-ar="لعبة أكشن ثلاثية الأبعاد مبنية من الصفر تتضمن تفاعلات اللاعب والعدو، الحركة، نظام الصحة، بيئات غامرة، مؤثرات بصرية وصوتية، وواجهة مستخدم متجاوبة."
+          data-en="A complete 3D action game built from scratch with player-enemy interactions, movement, health systems, immersive environments, VFX, sound effects, and responsive UI.">
+          لعبة أكشن ثلاثية الأبعاد مبنية من الصفر تتضمن تفاعلات اللاعب والعدو، الحركة، نظام الصحة، بيئات غامرة، مؤثرات بصرية وصوتية، وواجهة مستخدم متجاوبة.
+        </p>
+        <div class="tech-tags">
+          <span class="tech-tag">Unity</span>
+          <span class="tech-tag">C#</span>
+          <span class="tech-tag">3D Design</span>
+        </div>
+        <a href="https://amjadals.itch.io/beneath-the-waves" target="_blank" class="play-btn">🎮 Play on itch.io</a>
+      </div>
+
+    </div>
+  </section>
+  
+  <!-- Projects -->
+  <section id="projects" style="background:#faf5ff; max-width:100%; padding:80px 0;">
+    <div style="max-width:1100px; margin:0 auto; padding:0 40px;">
+
+      <h2 data-ar="مشاريعي" data-en="My Projects">مشاريعي</h2>
+
+      <div class="cards-grid">
+
+        <!-- Project 1: Portfolio -->
+        <div class="project-card">
+          <div class="proj-icon">🌐</div>
+          <h3 data-ar="موقعي الشخصي — Portfolio" data-en="Personal Portfolio Website">موقعي الشخصي — Portfolio</h3>
+          <p
+            data-ar="موقع شخصي كامل يعرض مهاراتي ومشاريعي وشهاداتي، مع دعم اللغتين العربية والإنجليزية."
+            data-en="A complete personal portfolio website showcasing my skills, projects, and certificates with Arabic and English support.">
+            موقع شخصي كامل يعرض مهاراتي ومشاريعي وشهاداتي، مع دعم اللغتين العربية والإنجليزية.
+          </p>
+          <div class="tech-tags">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+
+        <!-- Project 2: Beauty Salon -->
+        <div class="project-card">
+          <div class="proj-icon">💅</div>
+          <h3>Beauty Salon Website</h3>
+          <p
+            data-ar="موقع متجاوب لصالون تجميل يتضمن عرض الخدمات وحجز المواعيد وواجهة مستخدم تفاعلية."
+            data-en="A responsive beauty salon website with service listings, appointment booking, and an interactive user-friendly interface.">
+            موقع متجاوب لصالون تجميل يتضمن عرض الخدمات وحجز المواعيد وواجهة مستخدم تفاعلية.
+          </p>
+          <div class="tech-tags">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Certificates -->
+  <section id="certificates" style="background:#faf5ff; max-width:100%; padding:80px 0;">
+    <div style="max-width:1100px; margin:0 auto; padding:0 40px;">
+
+      <h2 data-ar="شهاداتي" data-en="My Certificates">شهاداتي</h2>
+
+      <div class="cards-grid">
+
+        <!-- 2026 -->
+        <div class="card"><h3>Cloud Computing and Artificial Intelligence Program</h3><p>Tuwaiq Academy</p><p>Feb 2026</p></div>
+        <div class="card"><h3>Cloud Computing Engineer</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+        <div class="card"><h3>ApsaraDB RDS Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+        <div class="card"><h3>Dive Into Generative AI</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+        <div class="card"><h3>Using Generative AI Ethically and Responsibly</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+        <div class="card"><h3>OSS Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+        <div class="card"><h3>ECS Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+        <div class="card"><h3>SLB Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+        <div class="card"><h3>VPC Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+
+        <!-- 2025 -->
+        <div class="card"><h3>Google IT Support</h3><p>Google</p><p>Oct 2025</p></div>
+        <div class="card"><h3>Technical Support Fundamentals</h3><p>Google</p><p>Sep 2025</p></div>
+        <div class="card"><h3>Artificial Intelligence Concepts and Advanced Applications</h3><p>SDAIA | سدايا</p><p>Sep 2025</p></div>
+        <div class="card"><h3>Fundamentals of Artificial Intelligence</h3><p>SDAIA | سدايا</p><p>Sep 2025</p></div>
+        <div class="card"><h3>Game Design and Programming Program</h3><p>Tuwaiq Academy</p><p>Nov 2025</p></div>
+        <div class="card"><h3>The Bits and Bytes of Computer Networking</h3><p>Google — Coursera</p><p>2025</p></div>
+        <div class="card"><h3>Operating Systems and You: Becoming a Power User</h3><p>Google — Coursera</p><p>2025</p></div>
+        <div class="card"><h3>System Administration and IT Infrastructure Services</h3><p>Google — Coursera</p><p>2025</p></div>
+        <div class="card"><h3>IT Security: Defense Against the Digital Dark Arts</h3><p>Google — Coursera</p><p>2025</p></div>
+        <div class="card"><h3>Accelerate Your Job Search with AI</h3><p>Google — Coursera</p><p>2025</p></div>
+
+        <!-- 2023 -->
+        <div class="card"><h3>Web Development</h3><p>Doroob | دروب</p><p>Nov 2023</p></div>
+        <div class="card"><h3>Microsoft Excel</h3><p>Doroob | دروب</p><p>Mar 2023</p></div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <div class="contact-section" id="contact">
+
+    <h2
+      data-ar="أبحث عن فرصة لتطوير مهاراتي"
+      data-en="Contact Me"
+      style="color:white; font-family:'Poppins',sans-serif;">
+      أبحث عن فرصة لتطوير مهاراتي
+    </h2>
+
+    <p
+      data-ar="هل تبحث عن موهبة؟! 🚀"
+      data-en="Looking for talent? I'm here! 🚀">
+      هل تبحث عن موهبة؟! 🚀
+    </p>
+
+    <!-- Contact links -->
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/amjad-alshehri4" target="_blank" class="contact-link">💼 LinkedIn</a>
+      <a href="mailto:amjadalshehri60@gmail.com" class="contact-link">📧 Email</a>
+      <a href="https://wa.me/966564789932" target="_blank" class="contact-link">💬 WhatsApp</a>
+      <a href="https://amjadals.itch.io/" target="_blank" class="contact-link">🎮 itch.io</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p
+      data-ar="© 2026 أمجاد الشهري — جميع الحقوق محفوظة"
+      data-en="© 2026 Amjad Alshahri — All Rights Reserved">
+      © 2026 أمجاد الشهري — جميع الحقوق محفوظة
+    </p>
+  </footer>
+
+  <script>
+
+    // Switch language between Arabic and English
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+      // Update all bilingual elements
+      document.querySelectorAll('[data-ar]').forEach(el => {
+        el.textContent = el.getAttribute('data-' + lang);
+      });
+    }
+
+  </script>
+
+</body>
+</html>
