@@ -1,66 +1,109 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Amjad Mohammed Alshahri - Computer Science Graduate | Portfolio showcasing projects, games, and certifications.">
   <title>Amjad Alshahri | Portfolio</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --rose: #e8c4b8;
+      --rose-light: #f5e0d8;
+      --rose-dim: rgba(232,196,184,0.15);
+      --lavender: #b8a4e8;
+      --dark: #0f0a1e;
+      --text-dim: #8a7aaa;
+      --white: #f0eaf8;
+    }
 
-    /* Reset */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-    /* Body */
     body {
-      font-family: 'Tajawal', 'Poppins', sans-serif;
-      background: #f8f5ff;
-      color: #2d2d2d;
+      font-family: 'Tajawal', sans-serif;
+      background: var(--dark);
+      color: var(--white);
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      overflow-x: hidden;
     }
-    
 
-    /* Navbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--rose-dim); border-radius: 3px; }
+
+    #crystalCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
     nav {
-      background: white;
-      padding: 16px 40px;
+      background: rgba(15,10,30,0.85);
+      backdrop-filter: blur(24px);
+      padding: 16px 48px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 20px rgba(124,58,237,0.1);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(232,196,184,0.1);
     }
 
-    /* Logo */
-    .logo { font-size: 20px; font-weight: 900; color: #7c3aed; font-family: 'Poppins', sans-serif; }
+    .logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--rose); letter-spacing: 3px; }
 
-    /* Nav links */
-    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
 
     .nav-links a {
-      color: #555;
+      color: var(--text-dim);
       text-decoration: none;
       font-size: 14px;
-      font-weight: 600;
-      transition: color 0.3s;
+      font-weight: 500;
+      transition: all 0.3s;
+      position: relative;
     }
 
-    /* Nav hover */
-    .nav-links a:hover { color: #7c3aed; }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; right: 0;
+      width: 0; height: 1px;
+      background: var(--rose);
+      transition: width 0.3s;
+    }
 
-    /* Language buttons */
-    .lang-btns { display: flex; gap: 8px; }
+    .nav-links a:hover { color: var(--rose); }
+    .nav-links a:hover::after { width: 100%; }
 
-    .lang-btns button {
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+
+    .cv-btn {
+      background: var(--rose-dim);
+      color: var(--rose);
+      padding: 8px 18px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: 'Tajawal', sans-serif;
+      transition: all 0.3s;
+      border: 1px solid rgba(232,196,184,0.3);
+      cursor: pointer;
+    }
+
+    .cv-btn:hover { background: var(--rose); color: var(--dark); }
+
+    .lang-toggle {
       background: transparent;
-      border: 2px solid #7c3aed;
-      color: #7c3aed;
-      padding: 6px 16px;
+      border: 1px solid rgba(184,164,232,0.3);
+      color: var(--lavender);
+      padding: 7px 16px;
       border-radius: 20px;
       cursor: pointer;
       font-family: 'Tajawal', sans-serif;
@@ -69,10 +112,8 @@
       transition: all 0.3s;
     }
 
-    /* Language button hover */
-    .lang-btns button:hover { background: #7c3aed; color: white; }
+    .lang-toggle:hover { background: var(--lavender); color: var(--dark); }
 
-    /* Hero */
     header {
       min-height: 100vh;
       display: flex;
@@ -80,383 +121,457 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 60px 40px;
-      background: linear-gradient(135deg, #faf5ff, #ede9fe, #ddd6fe);
+      padding: 80px 40px;
+      position: relative;
+      z-index: 1;
     }
 
-    /* Welcome tag */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+    }
+
+    .orb-1 { width: 500px; height: 500px; background: rgba(184,164,232,0.08); top: -150px; right: -150px; animation: breathe 6s ease-in-out infinite; }
+    .orb-2 { width: 350px; height: 350px; background: rgba(232,196,184,0.06); bottom: -80px; left: -80px; animation: breathe 8s ease-in-out infinite reverse; }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.15); opacity: 0.8; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: heroFadeUp 1.2s cubic-bezier(0.4,0,0.2,1) forwards;
+    }
+
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .hero-tag {
-      background: #ede9fe;
-      color: #7c3aed;
-      padding: 6px 20px;
-      border-radius: 20px;
+      display: inline-block;
+      background: rgba(232,196,184,0.08);
+      color: var(--rose);
+      padding: 8px 28px;
+      border-radius: 30px;
       font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 24px;
+      font-weight: 500;
+      margin-bottom: 32px;
+      border: 1px solid rgba(232,196,184,0.2);
+      letter-spacing: 3px;
     }
 
-    /* Hero name */
-    header h1 { font-size: 56px; font-weight: 900; color: #4c1d95; margin-bottom: 20px; }
+    header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(40px, 7vw, 80px);
+      color: var(--rose-light);
+      margin-bottom: 24px;
+      line-height: 1.1;
+      text-shadow: 0 0 60px rgba(232,196,184,0.2);
+    }
 
-    /* Hero text */
-    header p { font-size: 18px; color: #6b7280; max-width: 650px; line-height: 1.9; margin-bottom: 10px; }
+    header p { font-size: 17px; color: var(--text-dim); max-width: 600px; line-height: 2; margin-bottom: 12px; font-weight: 300; }
 
-    /* Hero buttons */
-    .hero-btns { display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap; justify-content: center; }
+    .hero-btns { display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap; justify-content: center; }
 
-    /* Primary button */
     .btn-primary {
-      background: #7c3aed;
-      color: white;
-      padding: 14px 32px;
+      background: var(--rose);
+      color: var(--dark);
+      padding: 14px 38px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: 700;
       font-size: 15px;
-      transition: all 0.3s;
-      box-shadow: 0 4px 20px rgba(124,58,237,0.3);
+      font-family: 'Tajawal', sans-serif;
+      transition: all 0.4s;
+      box-shadow: 0 4px 30px rgba(232,196,184,0.25);
+      border: none;
+      cursor: pointer;
     }
 
-    /* Primary button hover */
-    .btn-primary:hover { background: #6d28d9; transform: translateY(-2px); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(232,196,184,0.4); }
 
-    /* Outline button */
     .btn-outline {
       background: transparent;
-      color: #7c3aed;
-      padding: 14px 32px;
+      color: var(--rose);
+      padding: 14px 38px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: 700;
       font-size: 15px;
-      border: 2px solid #7c3aed;
-      transition: all 0.3s;
+      font-family: 'Tajawal', sans-serif;
+      border: 1px solid rgba(232,196,184,0.4);
+      transition: all 0.4s;
     }
 
-    /* Outline button hover */
-    .btn-outline:hover { background: #7c3aed; color: white; }
+    .btn-outline:hover { background: rgba(232,196,184,0.1); border-color: var(--rose); transform: translateY(-3px); }
 
-    /* Sections */
-    section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: all 0.8s cubic-bezier(0.4,0,0.2,1);
+    }
 
-    /* Section heading */
-    section h2 {
-      font-size: 36px;
-      font-weight: 900;
-      color: #4c1d95;
-      margin-bottom: 48px;
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    section {
+      padding: 100px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+
+    section h2, .full-width-inner h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 42px;
+      color: var(--rose-light);
+      margin-bottom: 56px;
       position: relative;
       display: inline-block;
     }
 
-    /* Heading underline */
-    section h2::after {
+    section h2::after, .full-width-inner h2::after {
       content: '';
       position: absolute;
-      bottom: -8px;
-      right: 0;
-      width: 60px;
-      height: 4px;
-      background: #7c3aed;
-      border-radius: 2px;
+      bottom: -10px; left: 0;
+      width: 50px; height: 1px;
+      background: linear-gradient(90deg, var(--rose), transparent);
     }
 
-    /* About bio */
-    .about-text { font-size: 17px; line-height: 2; color: #4b5563; max-width: 800px; margin-bottom: 40px; }
+    .about-text { font-size: 17px; line-height: 2.2; color: var(--text-dim); max-width: 780px; margin-bottom: 52px; font-weight: 300; }
 
-    /* Skills row */
-    .skills-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+    .skills-heading { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--rose); margin-bottom: 20px; font-style: italic; }
 
-    /* Skill pill */
     .skill-tag {
-      background: #ede9fe;
-      color: #7c3aed;
-      padding: 8px 20px;
+      background: rgba(232,196,184,0.06);
+      color: var(--rose);
+      padding: 10px 22px;
       border-radius: 20px;
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 500;
       transition: all 0.3s;
+      text-align: center;
+      border: 1px solid rgba(232,196,184,0.15);
+      font-family: 'Tajawal', sans-serif;
     }
 
-    /* Skill pill hover */
-    .skill-tag:hover { background: #7c3aed; color: white; }
+    .skill-tag:hover { background: rgba(232,196,184,0.15); border-color: rgba(232,196,184,0.4); transform: translateY(-3px); }
 
-    /* 3-column grid */
     .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 
-    /* Certificate card */
-    .card {
-      background: white;
-      border: 1px solid #e5e7eb;
-      border-radius: 16px;
-      padding: 24px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-    }
-
-    /* Card hover */
-    .card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(124,58,237,0.15); border-color: #c4b5fd; }
-
-    /* Card title */
-    .card h3 { font-size: 16px; color: #1f2937; margin-bottom: 10px; font-weight: 700; }
-
-    /* Card text */
-    .card p { font-size: 13px; color: #9ca3af; margin-bottom: 4px; }
-
-    /* Project card */
     .project-card {
-      background: white;
-      border: 1px solid #e5e7eb;
-      border-radius: 16px;
-      padding: 28px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(232,196,184,0.1);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.4s ease;
+      position: relative;
     }
 
-    /* Project card hover */
-    .project-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(124,58,237,0.15); border-color: #c4b5fd; }
+    .project-card:hover { transform: translateY(-8px); border-color: rgba(232,196,184,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
 
-    /* Project emoji */
-    .project-card .proj-icon { font-size: 36px; margin-bottom: 16px; }
+    .proj-icon { font-size: 40px; margin-bottom: 20px; display: block; }
 
-    /* Project title */
-    .project-card h3 { font-size: 18px; color: #4c1d95; font-weight: 700; margin-bottom: 10px; }
+    .project-card h3 { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--rose-light); margin-bottom: 12px; }
+    .project-card p { font-size: 14px; color: var(--text-dim); line-height: 1.9; margin-bottom: 18px; font-weight: 300; }
 
-    /* Project description */
-    .project-card p { font-size: 14px; color: #6b7280; line-height: 1.8; margin-bottom: 14px; }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
 
-    /* Tech tags */
-    .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .tech-tag {
+      background: rgba(184,164,232,0.08);
+      color: var(--lavender);
+      font-size: 11px;
+      padding: 4px 14px;
+      border-radius: 10px;
+      font-weight: 500;
+      border: 1px solid rgba(184,164,232,0.15);
+      font-family: 'Tajawal', sans-serif;
+    }
 
-    /* Single tech tag */
-    .tech-tag { background: #f3f4f6; color: #374151; font-size: 12px; padding: 4px 12px; border-radius: 10px; font-weight: 600; }
-
-    /* Play button link */
     .play-btn {
       display: inline-block;
-      background: #7c3aed;
-      color: white;
-      padding: 8px 20px;
+      position: relative;
+      z-index: 10;
+      background: rgba(232,196,184,0.1);
+      color: var(--rose);
+      padding: 9px 22px;
       border-radius: 20px;
       text-decoration: none;
       font-size: 13px;
       font-weight: 700;
       transition: all 0.3s;
-      margin-top: 8px;
+      border: 1px solid rgba(232,196,184,0.2);
+      font-family: 'Tajawal', sans-serif;
+      cursor: pointer;
     }
 
-    /* Play button hover */
-    .play-btn:hover { background: #6d28d9; transform: translateY(-2px); }
+    .play-btn:hover { background: var(--rose); color: var(--dark); transform: translateY(-2px); }
 
-    /* Contact */
+    .card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(232,196,184,0.08);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 2px; height: 0;
+      background: linear-gradient(180deg, var(--rose), transparent);
+      transition: height 0.4s;
+      border-radius: 2px;
+    }
+
+    .card:hover { transform: translateY(-5px); border-color: rgba(232,196,184,0.2); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+    .card:hover::before { height: 100%; }
+
+    .card h3 { font-size: 15px; color: var(--rose-light); margin-bottom: 8px; font-weight: 700; font-family: 'Tajawal', sans-serif; }
+    .card p { font-size: 13px; color: var(--text-dim); margin-bottom: 4px; font-family: 'Tajawal', sans-serif; }
+
+    .full-width {
+      width: 100%;
+      padding: 100px 0;
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid rgba(232,196,184,0.05);
+      border-bottom: 1px solid rgba(232,196,184,0.05);
+    }
+
+    .full-width-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+
+    .show-more-btn {
+      background: transparent;
+      color: var(--rose);
+      border: 1px solid rgba(232,196,184,0.3);
+      padding: 12px 36px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Tajawal', sans-serif;
+      transition: all 0.3s;
+    }
+
+    .show-more-btn:hover { background: rgba(232,196,184,0.1); border-color: var(--rose); transform: translateY(-2px); }
+
     .contact-section {
-      background: linear-gradient(135deg, #4c1d95, #7c3aed);
-      border-radius: 24px;
-      padding: 60px 40px;
+      background: linear-gradient(135deg, rgba(30,16,64,0.9), rgba(22,13,46,0.9));
+      border-radius: 28px;
+      padding: 80px 40px;
       text-align: center;
-      margin: 0 40px 80px;
+      margin: 0 48px 100px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(232,196,184,0.12);
+      z-index: 2;
     }
 
-    /* Contact text */
-    .contact-section p { color: rgba(255,255,255,0.8); font-size: 16px; margin-bottom: 40px; }
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(232,196,184,0.04), transparent 60%);
+      pointer-events: none;
+    }
 
-    /* Contact links row */
-    .contact-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .contact-section h2 { font-family: 'DM Serif Display', serif; font-size: 38px; color: var(--rose-light); margin-bottom: 16px; position: relative; }
+    .contact-section h2::after { display: none; }
+    .contact-section p { color: var(--text-dim); font-size: 16px; margin-bottom: 48px; position: relative; font-weight: 300; }
 
-    /* Single contact link */
+    .contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 2; }
+
     .contact-link {
-      background: white;
-      color: #7c3aed;
+      background: rgba(232,196,184,0.06);
+      color: var(--rose);
       padding: 14px 28px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 14px;
+      font-family: 'Tajawal', sans-serif;
       transition: all 0.3s;
+      border: 1px solid rgba(232,196,184,0.15);
     }
 
-    /* Contact link hover */
-    .contact-link:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+    .contact-link:hover { background: var(--rose); color: var(--dark); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(232,196,184,0.2); }
 
-    /* Footer */
-    footer { background: #1f2937; text-align: center; padding: 28px; color: #9ca3af; font-size: 14px; width: 100%; margin-top: auto; }
+    footer {
+      background: rgba(0,0,0,0.4);
+      text-align: center;
+      padding: 28px 48px;
+      color: var(--text-dim);
+      font-size: 13px;
+      width: 100%;
+      margin-top: auto;
+      border-top: 1px solid rgba(232,196,184,0.06);
+      position: relative;
+      z-index: 2;
+      font-weight: 300;
+    }
 
-    /* Mobile */
+    /* Scroll to top button */
+    .scroll-top {
+      position: fixed;
+      bottom: 32px;
+      left: 32px;
+      background: var(--rose-dim);
+      color: var(--rose);
+      border: 1px solid rgba(232,196,184,0.3);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      z-index: 999;
+    }
+
+    .scroll-top.visible { display: flex; }
+    .scroll-top:hover { background: var(--rose); color: var(--dark); transform: translateY(-3px); }
+
+    @media (max-width: 1024px) {
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+      nav { padding: 16px 24px; }
+    }
+
     @media (max-width: 768px) {
       .cards-grid { grid-template-columns: 1fr; }
-      header h1 { font-size: 32px; }
-      nav { flex-direction: column; gap: 12px; padding: 16px 20px; }
+      header h1 { font-size: 34px; }
+      nav { flex-wrap: wrap; gap: 12px; padding: 12px 16px; }
+      .nav-links { display: none; }
       section { padding: 60px 20px; }
-      .contact-section { margin: 0 20px 60px; padding: 40px 20px; }
+      .full-width-inner { padding: 0 20px; }
+      .full-width { padding: 60px 0; }
+      .contact-section { margin: 0 16px 60px; padding: 48px 20px; }
+      .hero-btns { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-outline { width: 100%; text-align: center; }
+      footer { padding: 24px 16px; }
     }
 
+    @media (max-width: 480px) {
+      header { padding: 40px 20px; }
+      section h2, .full-width-inner h2 { font-size: 30px; }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- Navbar -->
+  <canvas id="crystalCanvas"></canvas>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
   <nav>
-    <div class="logo">Portfolio</div>
-
+    <div class="logo">A.S</div>
     <ul class="nav-links">
-      <li><a href="#about" data-ar="من أنا" data-en="About Me">من أنا</a></li>
-      <li><a href="#projects" data-ar="المشاريع" data-en="Projects">المشاريع</a></li>
-      <li><a href="#games" data-ar="الألعاب" data-en="Games">الألعاب</a></li>
-      <li><a href="#certificates" data-ar="الشهادات" data-en="Certificates">الشهادات</a></li>
-      <li><a href="#contact" data-ar="للتواصل" data-en="Contact">للتواصل</a></li>
+      <li><a href="#about" data-ar="من أنا" data-en="About">About</a></li>
+      <li><a href="#projects" data-ar="المشاريع" data-en="Projects">Projects</a></li>
+      <li><a href="#games" data-ar="الألعاب" data-en="Games">Games</a></li>
+      <li><a href="#certificates" data-ar="الشهادات" data-en="Certificates">Certificates</a></li>
+      <li><a href="#contact" data-ar="للتواصل" data-en="Contact">Contact</a></li>
     </ul>
-
-    <div class="lang-btns">
-      <button onclick="setLang('ar')">عربي</button>
-      <button onclick="setLang('en')">English</button>
+    <div class="nav-actions">
+      <a href="AMJADCv.pdf" download class="cv-btn" id="cvBtn" data-ar="السيرة الذاتية" data-en="Download CV">Download CV</a>
+      <button class="lang-toggle" id="langBtn" onclick="toggleLang()">عربي</button>
     </div>
   </nav>
 
-  <!-- Hero -->
   <header>
-
-    <div class="hero-tag"
-      data-ar="مرحباً بك في موقعي"
-      data-en="Welcome to my portfolio">
-      مرحباً بك في موقعي
-    </div>
-
-    <h1
-      data-ar="أهلاً! أنا أمجاد محمد الشهري"
-      data-en="Hi! I'm Amjad Mohammed Alshahri">
-      أهلاً! أنا أمجاد محمد الشهري
-    </h1>
-
-    <p
-      data-ar="خريجة علوم حاسب وأتطلع للانضمام لبيئة عمل تقنية تُنمّي مهاراتي ✨"
-      data-en="A Computer Science graduate looking to join a tech environment that develops my skills ✨">
-      خريجة علوم حاسب وأتطلع للانضمام لبيئة عمل تقنية تُنمّي مهاراتي ✨
-    </p>
-
-    <p
-      data-ar="التخصص: علوم الحاسب | التخصص الفرعي: البرمجة وعلوم الحاسب"
-      data-en="Major: Computer Science | Minor: Programming & Computer Science">
-      التخصص: علوم الحاسب | التخصص الفرعي: البرمجة وعلوم الحاسب
-    </p>
-
-    <div class="hero-btns">
-
-      <a href="#projects" class="btn-primary"
-        data-ar="أعمالي"
-        data-en="View My Work">
-        أعمالي
-      </a>
-
-      <a href="#contact" class="btn-outline"
-        data-ar="أبحث عن فرصة لتطوير مهاراتي"
-        data-en="Contact Me">
-        أبحث عن فرصة لتطوير مهاراتي
-      </a>
-
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="hero-content">
+      <div class="hero-tag" data-ar="مرحباً بك في موقعي" data-en="Welcome to my portfolio">Welcome to my portfolio</div>
+      <h1 data-ar="أمجاد محمد الشهري" data-en="Amjad Mohammed Alshahri">Amjad Mohammed Alshahri</h1>
+      <p data-ar="خريجة علوم حاسب وأتطلع للانضمام لبيئة عمل تُنمّي مهاراتي ✨" data-en="A Computer Science graduate looking to join an environment that develops my skills ✨">A Computer Science graduate looking to join an environment that develops my skills ✨</p>
+      <p data-ar="التخصص: علوم الحاسب | التخصص الفرعي: البرمجة وعلوم الحاسب" data-en="Major: Computer Science | Minor: Programming & Computer Science">Major: Computer Science | Minor: Programming & Computer Science</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary" data-ar="شوف أعمالي" data-en="View My Work">View My Work</a>
+        <a href="#contact" class="btn-outline" data-ar="أبحث عن فرصة لتطوير مهاراتي" data-en="Contact Me">Contact Me</a>
+      </div>
     </div>
   </header>
 
-  <!-- About -->
   <section id="about">
-
-    <h2 data-ar="من أنا؟" data-en="About Me">من أنا؟</h2>
-
-    <!-- Bio -->
-    <p class="about-text"
+    <h2 class="reveal" data-ar="من أنا؟" data-en="About Me">About Me</h2>
+    <p class="about-text reveal"
       data-ar="خريجة علوم حاسب، حاصلة على لقب سفيرة المملكة في برنامج جلوب البيئي عام 2015، وشهادتين من أكاديمية طويق في الحوسبة السحابية، وتصميم وبرمجة الألعاب. أمتلك خبرة في أكثر من مجال تشمل أخصائي علاقات عامة، مساعد إداري، ودعم تقنية المعلومات. أسعى للتطوير المهني والبحث عن فرص تُنمّي مهاراتي ✨."
       data-en="A Computer Science graduate, honored as Saudi Arabia's Ambassador in the GLOBE Program 2015, and holder of two certifications from Tuwaiq Academy in Cloud Computing and Game Design & Programming. I have diverse experience as a Public Relations Specialist, Administrative Assistant, and IT Support. I'm seeking professional growth and opportunities to develop my skills ✨.">
-      خريجة علوم حاسب، حاصلة على لقب سفيرة المملكة في برنامج جلوب البيئي عام 2015، وشهادتين من أكاديمية طويق في الحوسبة السحابية، وتصميم وبرمجة الألعاب. أمتلك خبرة في أكثر من مجال تشمل أخصائي علاقات عامة، مساعد إداري، ودعم تقنية المعلومات. أسعى للتطوير المهني والبحث عن فرص تُنمّي مهاراتي ✨.
+      A Computer Science graduate, honored as Saudi Arabia's Ambassador in the GLOBE Program 2015, and holder of two certifications from Tuwaiq Academy in Cloud Computing and Game Design & Programming. I have diverse experience as a Public Relations Specialist, Administrative Assistant, and IT Support. I'm seeking professional growth and opportunities to develop my skills ✨.
     </p>
 
-   
-    <!-- Soft skills heading -->
-    <h3 style="color:#7c3aed; margin-bottom:20px; font-size:22px;"
-      data-ar="المهارات الشخصية"
-      data-en="Soft Skills">
-      المهارات الشخصية
-    </h3>
-
-    <!-- Soft skills - 3 per row -->
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:40px;">
-
-      <span class="skill-tag" style="text-align:center;"
-        data-ar="التواصل الفعّال"
-        data-en="Effective Communication">
-        التواصل الفعّال
-      </span>
-
-      <span class="skill-tag" style="text-align:center;"
-        data-ar="العمل ضمن فريق"
-        data-en="Teamwork">
-        العمل ضمن فريق
-      </span>
-
-      <span class="skill-tag" style="text-align:center;"
-        data-ar="حل المشكلات"
-        data-en="Problem Solving">
-        حل المشكلات
-      </span>
-
-      <span class="skill-tag" style="text-align:center;"
-        data-ar="التكيّف مع بيئة العمل"
-        data-en="Adaptability">
-        التكيّف مع بيئة العمل
-      </span>
-
-      <span class="skill-tag" style="text-align:center;"
-        data-ar="التنظيم وإدارة المهام"
-        data-en="Organization & Task Management">
-        التنظيم وإدارة المهام
-      </span>
-
-      <span class="skill-tag" style="text-align:center;"
-        data-ar="التعلّم الذاتي والتطوير المستمر"
-        data-en="Self-Learning & Continuous Development">
-        التعلّم الذاتي والتطوير المستمر
-      </span>
-
+    <div class="skills-heading reveal" data-ar="المهارات الشخصية" data-en="Soft Skills">Soft Skills</div>
+    <div class="reveal" style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:52px;">
+      <span class="skill-tag" data-ar="التواصل الفعّال" data-en="Effective Communication">Effective Communication</span>
+      <span class="skill-tag" data-ar="العمل ضمن فريق" data-en="Teamwork">Teamwork</span>
+      <span class="skill-tag" data-ar="حل المشكلات" data-en="Problem Solving">Problem Solving</span>
+      <span class="skill-tag" data-ar="التكيّف مع بيئة العمل" data-en="Adaptability">Adaptability</span>
+      <span class="skill-tag" data-ar="التنظيم وإدارة المهام" data-en="Organization & Task Management">Organization & Task Management</span>
+      <span class="skill-tag" data-ar="التعلّم الذاتي والتطوير المستمر" data-en="Self-Learning & Development">Self-Learning & Development</span>
     </div>
 
-    <!-- Technical skills heading -->
-    <h3 style="color:#7c3aed; margin-bottom:20px; font-size:22px;"
-      data-ar="المهارات التقنية"
-      data-en="Technical Skills">
-      المهارات التقنية
-    </h3>
-
-    <!-- Technical skills - 3 per row -->
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
-
-      <span class="skill-tag" style="text-align:center;">Microsoft Office</span>
-      <span class="skill-tag" style="text-align:center;">IT Support</span>
-      <span class="skill-tag" style="text-align:center;">AI & Machine Learning</span>
-      <span class="skill-tag" style="text-align:center;">Cloud Computing</span>
-      <span class="skill-tag" style="text-align:center;">JavaScript</span>
-      <span class="skill-tag" style="text-align:center;">Unity</span>
-      <span class="skill-tag" style="text-align:center;">HTML</span>
-      <span class="skill-tag" style="text-align:center;">CSS</span>
-      <span class="skill-tag" style="text-align:center;">C#</span>
-
+    <div class="skills-heading reveal" data-ar="المهارات التقنية" data-en="Technical Skills">Technical Skills</div>
+    <div class="reveal" style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
+      <span class="skill-tag">Microsoft Office</span>
+      <span class="skill-tag">IT Support</span>
+      <span class="skill-tag">AI & Machine Learning</span>
+      <span class="skill-tag">Cloud Computing</span>
+      <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">Unity</span>
+      <span class="skill-tag">HTML</span>
+      <span class="skill-tag">CSS</span>
+      <span class="skill-tag">C#</span>
     </div>
+  </section>
 
-    
-  <!-- Games -->
+  <div class="full-width" id="projects">
+    <div class="full-width-inner">
+      <h2 class="reveal" data-ar="مشاريعي" data-en="My Projects">My Projects</h2>
+      <div class="cards-grid">
+        <div class="project-card reveal">
+          <span class="proj-icon">🌐</span>
+          <h3 data-ar="موقعي الشخصي" data-en="Personal Portfolio">Personal Portfolio</h3>
+          <p data-ar="موقع شخصي كامل يعرض مهاراتي ومشاريعي وشهاداتي، مع دعم اللغتين العربية والإنجليزية." data-en="A complete personal portfolio showcasing my skills, projects, and certificates with Arabic and English support.">A complete personal portfolio showcasing my skills, projects, and certificates with Arabic and English support.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <span class="proj-icon">💅</span>
+          <h3>Beauty Salon Website</h3>
+          <p data-ar="موقع متجاوب لصالون تجميل يتضمن عرض الخدمات وحجز المواعيد وواجهة مستخدم تفاعلية." data-en="A responsive beauty salon website with service listings, appointment booking, and an interactive interface.">A responsive beauty salon website with service listings, appointment booking, and an interactive interface.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <section id="games">
-
-    <h2 data-ar="تصميم وبرمجة الألعاب" data-en="Game Design & Development">تصميم وبرمجة الألعاب</h2>
-
+    <h2 class="reveal" data-ar="تصميم وبرمجة الألعاب" data-en="Game Design & Development">Game Design & Development</h2>
     <div class="cards-grid">
-
-      <!-- Game 1: Silent Collision -->
-      <div class="project-card">
-        <div class="proj-icon">🎮</div>
+      <div class="project-card reveal">
+        <span class="proj-icon">🎮</span>
         <h3>Silent Collision</h3>
-        <p
-          data-ar="لعبة أكشن ثلاثية الأبعاد مبنية من الصفر تتضمن تفاعلات اللاعب والعدو، الحركة، نظام الصحة، بيئات غامرة، مؤثرات بصرية وصوتية، وواجهة مستخدم متجاوبة."
-          data-en="A complete 3D action game built from scratch with player-enemy interactions, movement, health systems, immersive environments, VFX, sound effects, and responsive UI.">
-          لعبة أكشن ثلاثية الأبعاد مبنية من الصفر تتضمن تفاعلات اللاعب والعدو، الحركة، نظام الصحة، بيئات غامرة، مؤثرات بصرية وصوتية، وواجهة مستخدم متجاوبة.
-        </p>
+        <p data-ar="لعبة أكشن ثلاثية الأبعاد مبنية من الصفر تتضمن تفاعلات اللاعب والعدو، الحركة، نظام الصحة، بيئات غامرة، مؤثرات بصرية وصوتية، وواجهة مستخدم متجاوبة." data-en="A complete 3D action game built from scratch with player-enemy interactions, movement, health systems, immersive environments, VFX, sound effects, and responsive UI.">A complete 3D action game built from scratch with player-enemy interactions, movement, health systems, immersive environments, VFX, sound effects, and responsive UI.</p>
         <div class="tech-tags">
           <span class="tech-tag">Unity</span>
           <span class="tech-tag">C#</span>
@@ -464,16 +579,10 @@
         </div>
         <a href="https://amjadals.itch.io/tuwaiq-projectamjad-alshehri" target="_blank" class="play-btn">🎮 Play on itch.io</a>
       </div>
-
-      <!-- Game 2: Beneath The Waves -->
-      <div class="project-card">
-        <div class="proj-icon">🌊</div>
+      <div class="project-card reveal">
+        <span class="proj-icon">🌊</span>
         <h3>Beneath The Waves</h3>
-        <p
-          data-ar="لعبة أكشن ثلاثية الأبعاد مبنية من الصفر تتضمن تفاعلات اللاعب والعدو، الحركة، نظام الصحة، بيئات غامرة، مؤثرات بصرية وصوتية، وواجهة مستخدم متجاوبة."
-          data-en="A complete 3D action game built from scratch with player-enemy interactions, movement, health systems, immersive environments, VFX, sound effects, and responsive UI.">
-          لعبة أكشن ثلاثية الأبعاد مبنية من الصفر تتضمن تفاعلات اللاعب والعدو، الحركة، نظام الصحة، بيئات غامرة، مؤثرات بصرية وصوتية، وواجهة مستخدم متجاوبة.
-        </p>
+        <p data-ar="لعبة أكشن ثلاثية الأبعاد مبنية من الصفر تتضمن تفاعلات اللاعب والعدو، الحركة، نظام الصحة، بيئات غامرة، مؤثرات بصرية وصوتية، وواجهة مستخدم متجاوبة." data-en="A complete 3D action game built from scratch with player-enemy interactions, movement, health systems, immersive environments, VFX, sound effects, and responsive UI.">A complete 3D action game built from scratch with player-enemy interactions, movement, health systems, immersive environments, VFX, sound effects, and responsive UI.</p>
         <div class="tech-tags">
           <span class="tech-tag">Unity</span>
           <span class="tech-tag">C#</span>
@@ -481,112 +590,53 @@
         </div>
         <a href="https://amjadals.itch.io/beneath-the-waves" target="_blank" class="play-btn">🎮 Play on itch.io</a>
       </div>
-
-    </div>
-  </section>
-  
-  <!-- Projects -->
-  <section id="projects" style="background:#faf5ff; max-width:100%; padding:80px 0;">
-    <div style="max-width:1100px; margin:0 auto; padding:0 40px;">
-
-      <h2 data-ar="مشاريعي" data-en="My Projects">مشاريعي</h2>
-
-      <div class="cards-grid">
-
-        <!-- Project 1: Portfolio -->
-        <div class="project-card">
-          <div class="proj-icon">🌐</div>
-          <h3 data-ar="موقعي الشخصي" data-en="Personal Portfolio Website">موقعي الشخصي </h3>
-          <p
-            data-ar="موقع شخصي كامل يعرض مهاراتي ومشاريعي وشهاداتي، مع دعم اللغتين العربية والإنجليزية."
-            data-en="A complete personal portfolio website showcasing my skills, projects, and certificates with Arabic and English support.">
-            موقع شخصي كامل يعرض مهاراتي ومشاريعي وشهاداتي، مع دعم اللغتين العربية والإنجليزية.
-          </p>
-          <div class="tech-tags">
-            <span class="tech-tag">HTML</span>
-            <span class="tech-tag">CSS</span>
-            <span class="tech-tag">JavaScript</span>
-          </div>
-        </div>
-
-        <!-- Project 2: Beauty Salon -->
-        <div class="project-card">
-          <div class="proj-icon">💅</div>
-          <h3>Beauty Salon Website</h3>
-          <p
-            data-ar="موقع متجاوب لصالون تجميل يتضمن عرض الخدمات وحجز المواعيد وواجهة مستخدم تفاعلية."
-            data-en="A responsive beauty salon website with service listings, appointment booking, and an interactive user-friendly interface.">
-            موقع متجاوب لصالون تجميل يتضمن عرض الخدمات وحجز المواعيد وواجهة مستخدم تفاعلية.
-          </p>
-          <div class="tech-tags">
-            <span class="tech-tag">HTML</span>
-            <span class="tech-tag">CSS</span>
-            <span class="tech-tag">JavaScript</span>
-          </div>
-        </div>
-
-      </div>
     </div>
   </section>
 
-
-  <!-- Certificates -->
-  <section id="certificates" style="background:#faf5ff; max-width:100%; padding:80px 0;">
-    <div style="max-width:1100px; margin:0 auto; padding:0 40px;">
-
-      <h2 data-ar="شهاداتي" data-en="My Certificates">شهاداتي</h2>
-
-      <div class="cards-grid">
-
-        <!-- 2026 -->
+  <div class="full-width" id="certificates">
+    <div class="full-width-inner">
+      <h2 class="reveal" data-ar="شهاداتي" data-en="My Certificates">My Certificates</h2>
+      <div class="cards-grid reveal">
         <div class="card"><h3>Cloud Computing and Artificial Intelligence Program</h3><p>Tuwaiq Academy</p><p>Feb 2026</p></div>
-        <div class="card"><h3>Cloud Computing Engineer</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
-        <div class="card"><h3>ApsaraDB RDS Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
-        <div class="card"><h3>Dive Into Generative AI</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
-        <div class="card"><h3>Using Generative AI Ethically and Responsibly</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
-        <div class="card"><h3>OSS Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
-        <div class="card"><h3>ECS Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
-        <div class="card"><h3>SLB Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
-        <div class="card"><h3>VPC Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
-
-        <!-- 2025 -->
-        <div class="card"><h3>Google IT Support</h3><p>Google</p><p>Oct 2025</p></div>
-        <div class="card"><h3>Technical Support Fundamentals</h3><p>Google</p><p>Sep 2025</p></div>
-        <div class="card"><h3>Artificial Intelligence Concepts and Advanced Applications</h3><p>SDAIA | سدايا</p><p>Sep 2025</p></div>
-        <div class="card"><h3>Fundamentals of Artificial Intelligence</h3><p>SDAIA | سدايا</p><p>Sep 2025</p></div>
         <div class="card"><h3>Game Design and Programming Program</h3><p>Tuwaiq Academy</p><p>Nov 2025</p></div>
-        <div class="card"><h3>The Bits and Bytes of Computer Networking</h3><p>Google — Coursera</p><p>2025</p></div>
-        <div class="card"><h3>Operating Systems and You: Becoming a Power User</h3><p>Google — Coursera</p><p>2025</p></div>
-        <div class="card"><h3>System Administration and IT Infrastructure Services</h3><p>Google — Coursera</p><p>2025</p></div>
-        <div class="card"><h3>IT Security: Defense Against the Digital Dark Arts</h3><p>Google — Coursera</p><p>2025</p></div>
-        <div class="card"><h3>Accelerate Your Job Search with AI</h3><p>Google — Coursera</p><p>2025</p></div>
-
-        <!-- 2023 -->
-        <div class="card"><h3>Web Development</h3><p>Doroob | دروب</p><p>Nov 2023</p></div>
-        <div class="card"><h3>Microsoft Excel</h3><p>Doroob | دروب</p><p>Mar 2023</p></div>
-
+        <div class="card"><h3>Google IT Support</h3><p>Google</p><p>Oct 2025</p></div>
+      </div>
+      <div id="moreCerts" style="display:none; margin-top:24px;">
+        <div class="cards-grid">
+          <div class="card"><h3>Cloud Computing Engineer</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+          <div class="card"><h3>ApsaraDB RDS Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+          <div class="card"><h3>Dive Into Generative AI</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+          <div class="card"><h3>Using Generative AI Ethically and Responsibly</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+          <div class="card"><h3>OSS Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+          <div class="card"><h3>ECS Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+          <div class="card"><h3>SLB Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+          <div class="card"><h3>VPC Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+          <div class="card"><h3>Technical Support Fundamentals</h3><p>Google</p><p>Sep 2025</p></div>
+          <div class="card"><h3>Artificial Intelligence Concepts and Advanced Applications</h3><p>SDAIA | سدايا</p><p>Sep 2025</p></div>
+          <div class="card"><h3>Fundamentals of Artificial Intelligence</h3><p>SDAIA | سدايا</p><p>Sep 2025</p></div>
+          <div class="card"><h3>The Bits and Bytes of Computer Networking</h3><p>Google — Coursera</p><p>2025</p></div>
+          <div class="card"><h3>Operating Systems and You: Becoming a Power User</h3><p>Google — Coursera</p><p>2025</p></div>
+          <div class="card"><h3>System Administration and IT Infrastructure Services</h3><p>Google — Coursera</p><p>2025</p></div>
+          <div class="card"><h3>IT Security: Defense Against the Digital Dark Arts</h3><p>Google — Coursera</p><p>2025</p></div>
+          <div class="card"><h3>Accelerate Your Job Search with AI</h3><p>Google — Coursera</p><p>2025</p></div>
+          <div class="card"><h3>Web Development</h3><p>Doroob | دروب</p><p>Nov 2023</p></div>
+          <div class="card"><h3>Microsoft Excel</h3><p>Doroob | دروب</p><p>Mar 2023</p></div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:40px;">
+        <button onclick="toggleCerts()" id="certsBtn" class="show-more-btn reveal"
+          data-ar-more="عرض المزيد ↓" data-en-more="Show More ↓"
+          data-ar-less="عرض أقل ↑" data-en-less="Show Less ↑">
+          Show More ↓
+        </button>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Contact -->
   <div class="contact-section" id="contact">
-
-    <h2
-      data-ar="أبحث عن فرصة لتطوير مهاراتي"
-      data-en="Contact Me"
-      style="color:white; font-family:'Poppins',sans-serif;">
-      أبحث عن فرصة لتطوير مهاراتي
-    </h2>
-
-    <p
-      data-ar="هل تبحث عن موهبة؟! 🚀"
-      data-en="Looking for talent? I'm here! 🚀">
-      هل تبحث عن موهبة؟! 🚀
-    </p>
-
-    <!-- Contact links -->
-    <div class="contact-links">
+    <h2 class="reveal" data-ar="أبحث عن فرصة لتطوير مهاراتي" data-en="Contact Me">Contact Me</h2>
+    <p class="reveal" data-ar="هل تبحث عن موهبة؟ أنا هنا 🌟" data-en="Looking for talent? I'm here 🌟">Looking for talent? I'm here 🌟</p>
+    <div class="contact-links reveal">
       <a href="https://www.linkedin.com/in/amjad-alshehri4" target="_blank" class="contact-link">💼 LinkedIn</a>
       <a href="mailto:amjadalshehri60@gmail.com" class="contact-link">📧 Email</a>
       <a href="https://wa.me/966564789932" target="_blank" class="contact-link">💬 WhatsApp</a>
@@ -594,28 +644,131 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
-    <p
-      data-ar="© 2026 أمجاد الشهري — جميع الحقوق محفوظة"
-      data-en="© 2026 Amjad Alshahri — All Rights Reserved">
-      © 2026 أمجاد الشهري — جميع الحقوق محفوظة
-    </p>
+    <p data-ar="© 2026 أمجاد الشهري — جميع الحقوق محفوظة" data-en="© 2026 Amjad Alshahri — All Rights Reserved">© 2026 Amjad Alshahri — All Rights Reserved</p>
   </footer>
 
   <script>
+    // Diamond crystals
+    const canvas = document.getElementById('crystalCanvas');
+    const ctx = canvas.getContext('2d');
 
-    // Switch language between Arabic and English
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+
+    class Diamond {
+      constructor() { this.reset(true); }
+      reset(initial = false) {
+        this.x = Math.random() * canvas.width;
+        this.y = initial ? Math.random() * canvas.height : canvas.height + 20;
+        this.size = Math.random() * 1 + 1;
+        this.speedY = Math.random() * 0.4 + 0.15;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.rotation = Math.random() * Math.PI;
+        this.rotSpeed = (Math.random() - 0.5) * 0.02;
+        this.pulse = Math.random() * Math.PI * 2;
+        this.pulseSpeed = Math.random() * 0.03 + 0.01;
+        this.isRose = Math.random() > 0.4;
+      }
+      draw() {
+        this.pulse += this.pulseSpeed;
+        this.rotation += this.rotSpeed;
+        this.y -= this.speedY;
+        this.x += this.speedX;
+        if (this.y < -20) this.reset();
+        const glow = (Math.sin(this.pulse) + 1) / 2;
+        const s = this.size * (0.8 + glow * 0.4);
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        const r = this.isRose ? `255, ${180 + glow * 40}, ${160 + glow * 40}` : `220, 210, ${240 + glow * 15}`;
+        const alpha = 0.5 + glow * 0.5;
+        const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, s * 4);
+        grad.addColorStop(0, `rgba(${r}, ${alpha * 0.6})`);
+        grad.addColorStop(0.5, `rgba(${r}, ${alpha * 0.2})`);
+        grad.addColorStop(1, `rgba(${r}, 0)`);
+        ctx.beginPath();
+        ctx.arc(0, 0, s * 4, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(0, -s * 1.8);
+        ctx.lineTo(s * 1.2, -s * 0.3);
+        ctx.lineTo(s * 0.8, s * 1.5);
+        ctx.lineTo(0, s * 2);
+        ctx.lineTo(-s * 0.8, s * 1.5);
+        ctx.lineTo(-s * 1.2, -s * 0.3);
+        ctx.closePath();
+        const fillGrad = ctx.createLinearGradient(-s, -s * 2, s, s * 2);
+        fillGrad.addColorStop(0, `rgba(${r}, ${alpha})`);
+        fillGrad.addColorStop(0.3, `rgba(255, 255, 255, ${alpha * 0.9})`);
+        fillGrad.addColorStop(0.6, `rgba(${r}, ${alpha * 0.7})`);
+        fillGrad.addColorStop(1, `rgba(${r}, ${alpha * 0.4})`);
+        ctx.fillStyle = fillGrad;
+        ctx.shadowColor = `rgba(${r}, 0.9)`;
+        ctx.shadowBlur = s * 15;
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(-s * 0.2, -s * 1.5);
+        ctx.lineTo(s * 0.4, -s * 0.5);
+        ctx.lineTo(0, -s * 0.3);
+        ctx.closePath();
+        ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.8})`;
+        ctx.shadowBlur = 0;
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    const diamonds = [];
+    for (let i = 0; i < 35; i++) diamonds.push(new Diamond());
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      diamonds.forEach(d => d.draw());
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Scroll to top button
+    window.addEventListener('scroll', () => {
+      document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
+    });
+
+    // Language — starts in English
+    let currentLang = 'en';
+    let certsVisible = false;
+
+    function toggleLang() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      setLang(currentLang);
+    }
+
     function setLang(lang) {
       document.documentElement.lang = lang;
       document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-
-      // Update all bilingual elements
-      document.querySelectorAll('[data-ar]').forEach(el => {
-        el.textContent = el.getAttribute('data-' + lang);
-      });
+      document.querySelectorAll('[data-ar]').forEach(el => { el.textContent = el.getAttribute('data-' + lang); });
+      document.getElementById('langBtn').textContent = lang === 'ar' ? 'English' : 'عربي';
+      const btn = document.getElementById('certsBtn');
+      btn.textContent = certsVisible ? btn.getAttribute('data-' + lang + '-less') : btn.getAttribute('data-' + lang + '-more');
     }
 
+    // Certificates
+    function toggleCerts() {
+      certsVisible = !certsVisible;
+      const btn = document.getElementById('certsBtn');
+      document.getElementById('moreCerts').style.display = certsVisible ? 'block' : 'none';
+      btn.textContent = certsVisible ? btn.getAttribute('data-' + currentLang + '-less') : btn.getAttribute('data-' + currentLang + '-more');
+    }
   </script>
 
 </body>
