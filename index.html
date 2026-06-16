@@ -6,473 +6,105 @@
   <meta name="description" content="Amjad Mohammed Alshahri - Computer Science Graduate | Portfolio showcasing projects, games, and certifications.">
   <title>Amjad Alshahri | Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
   <style>
     :root {
-      --rose: #e8c4b8;
-      --rose-light: #f5e0d8;
-      --rose-dim: rgba(232,196,184,0.15);
-      --lavender: #b8a4e8;
-      --dark: #0f0a1e;
-      --text-dim: #8a7aaa;
-      --white: #f0eaf8;
+      --rose: #e8c4b8; --rose-light: #f5e0d8; --rose-dim: rgba(232,196,184,0.15);
+      --lavender: #b8a4e8; --dark: #0f0a1e; --text-dim: #8a7aaa; --white: #f0eaf8;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Tajawal', sans-serif;
-      background: var(--dark);
-      color: var(--white);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
+    body { font-family: 'Tajawal', sans-serif; background: var(--dark); color: var(--white); display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--dark); }
     ::-webkit-scrollbar-thumb { background: var(--rose-dim); border-radius: 3px; }
-
-    #crystalCanvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    nav {
-      background: rgba(15,10,30,0.85);
-      backdrop-filter: blur(24px);
-      padding: 16px 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid rgba(232,196,184,0.1);
-    }
-
+    #crystalCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+    nav { background: rgba(15,10,30,0.85); backdrop-filter: blur(24px); padding: 16px 48px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(232,196,184,0.1); }
     .logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--rose); letter-spacing: 3px; }
-
     .nav-links { display: flex; gap: 32px; list-style: none; }
-
-    .nav-links a {
-      color: var(--text-dim);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: all 0.3s;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; right: 0;
-      width: 0; height: 1px;
-      background: var(--rose);
-      transition: width 0.3s;
-    }
-
+    .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.3s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--rose); transition: width 0.3s; }
     .nav-links a:hover { color: var(--rose); }
     .nav-links a:hover::after { width: 100%; }
-
     .nav-actions { display: flex; gap: 10px; align-items: center; }
-
-    .cv-btn {
-      background: var(--rose-dim);
-      color: var(--rose);
-      padding: 8px 18px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 700;
-      font-family: 'Tajawal', sans-serif;
-      transition: all 0.3s;
-      border: 1px solid rgba(232,196,184,0.3);
-      cursor: pointer;
-    }
-
+    .cv-btn { background: var(--rose-dim); color: var(--rose); padding: 8px 18px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 700; font-family: 'Tajawal', sans-serif; transition: all 0.3s; border: 1px solid rgba(232,196,184,0.3); cursor: pointer; }
     .cv-btn:hover { background: var(--rose); color: var(--dark); }
-
-    .lang-toggle {
-      background: transparent;
-      border: 1px solid rgba(184,164,232,0.3);
-      color: var(--lavender);
-      padding: 7px 16px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-family: 'Tajawal', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      transition: all 0.3s;
-    }
-
+    .lang-toggle { background: transparent; border: 1px solid rgba(184,164,232,0.3); color: var(--lavender); padding: 7px 16px; border-radius: 20px; cursor: pointer; font-family: 'Tajawal', sans-serif; font-size: 13px; font-weight: 700; transition: all 0.3s; }
     .lang-toggle:hover { background: var(--lavender); color: var(--dark); }
-
-    header {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 80px 40px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(100px);
-      pointer-events: none;
-    }
-
+    header { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 40px; position: relative; z-index: 1; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; }
     .orb-1 { width: 500px; height: 500px; background: rgba(184,164,232,0.08); top: -150px; right: -150px; animation: breathe 6s ease-in-out infinite; }
     .orb-2 { width: 350px; height: 350px; background: rgba(232,196,184,0.06); bottom: -80px; left: -80px; animation: breathe 8s ease-in-out infinite reverse; }
-
-    @keyframes breathe {
-      0%, 100% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.15); opacity: 0.8; }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      animation: heroFadeUp 1.2s cubic-bezier(0.4,0,0.2,1) forwards;
-    }
-
-    @keyframes heroFadeUp {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-tag {
-      display: inline-block;
-      background: rgba(232,196,184,0.08);
-      color: var(--rose);
-      padding: 8px 28px;
-      border-radius: 30px;
-      font-size: 13px;
-      font-weight: 500;
-      margin-bottom: 32px;
-      border: 1px solid rgba(232,196,184,0.2);
-      letter-spacing: 3px;
-    }
-
-    header h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(40px, 7vw, 80px);
-      color: var(--rose-light);
-      margin-bottom: 24px;
-      line-height: 1.1;
-      text-shadow: 0 0 60px rgba(232,196,184,0.2);
-    }
-
+    @keyframes breathe { 0%, 100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.15); opacity: 0.8; } }
+    .hero-content { position: relative; z-index: 2; animation: heroFadeUp 1.2s cubic-bezier(0.4,0,0.2,1) forwards; }
+    @keyframes heroFadeUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+    .hero-tag { display: inline-block; background: rgba(232,196,184,0.08); color: var(--rose); padding: 8px 28px; border-radius: 30px; font-size: 13px; font-weight: 500; margin-bottom: 32px; border: 1px solid rgba(232,196,184,0.2); letter-spacing: 3px; }
+    header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 7vw, 80px); color: var(--rose-light); margin-bottom: 24px; line-height: 1.1; text-shadow: 0 0 60px rgba(232,196,184,0.2); }
     header p { font-size: 17px; color: var(--text-dim); max-width: 600px; line-height: 2; margin-bottom: 12px; font-weight: 300; }
-
     .hero-btns { display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap; justify-content: center; }
-
-    .btn-primary {
-      background: var(--rose);
-      color: var(--dark);
-      padding: 14px 38px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 15px;
-      font-family: 'Tajawal', sans-serif;
-      transition: all 0.4s;
-      box-shadow: 0 4px 30px rgba(232,196,184,0.25);
-      border: none;
-      cursor: pointer;
-    }
-
+    .btn-primary { background: var(--rose); color: var(--dark); padding: 14px 38px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 15px; font-family: 'Tajawal', sans-serif; transition: all 0.4s; box-shadow: 0 4px 30px rgba(232,196,184,0.25); border: none; cursor: pointer; }
     .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(232,196,184,0.4); }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--rose);
-      padding: 14px 38px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 15px;
-      font-family: 'Tajawal', sans-serif;
-      border: 1px solid rgba(232,196,184,0.4);
-      transition: all 0.4s;
-    }
-
+    .btn-outline { background: transparent; color: var(--rose); padding: 14px 38px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 15px; font-family: 'Tajawal', sans-serif; border: 1px solid rgba(232,196,184,0.4); transition: all 0.4s; }
     .btn-outline:hover { background: rgba(232,196,184,0.1); border-color: var(--rose); transform: translateY(-3px); }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(35px);
-      transition: all 0.8s cubic-bezier(0.4,0,0.2,1);
-    }
-
+    .reveal { opacity: 0; transform: translateY(35px); transition: all 0.8s cubic-bezier(0.4,0,0.2,1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    section {
-      padding: 100px 48px;
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
-      position: relative;
-      z-index: 2;
-    }
-
-    section h2, .full-width-inner h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 42px;
-      color: var(--rose-light);
-      margin-bottom: 56px;
-      position: relative;
-      display: inline-block;
-    }
-
-    section h2::after, .full-width-inner h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px; left: 0;
-      width: 50px; height: 1px;
-      background: linear-gradient(90deg, var(--rose), transparent);
-    }
-
+    section { padding: 100px 48px; max-width: 1100px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
+    section h2, .full-width-inner h2 { font-family: 'DM Serif Display', serif; font-size: 42px; color: var(--rose-light); margin-bottom: 56px; position: relative; display: inline-block; }
+    section h2::after, .full-width-inner h2::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 50px; height: 1px; background: linear-gradient(90deg, var(--rose), transparent); }
     .about-text { font-size: 17px; line-height: 2.2; color: var(--text-dim); max-width: 780px; margin-bottom: 52px; font-weight: 300; }
-
-    .skills-heading { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--rose); margin-bottom: 20px; font-style: italic; }
-
-    .skill-tag {
-      background: rgba(232,196,184,0.06);
-      color: var(--rose);
-      padding: 10px 22px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 500;
-      transition: all 0.3s;
-      text-align: center;
-      border: 1px solid rgba(232,196,184,0.15);
-      font-family: 'Tajawal', sans-serif;
-    }
-
-    .skill-tag:hover { background: rgba(232,196,184,0.15); border-color: rgba(232,196,184,0.4); transform: translateY(-3px); }
-
+    .tabs-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+    .tab-hint { font-size: 13px; color: var(--text-dim); margin-bottom: 20px; }
+    .tab-btn { background: rgba(232,196,184,0.06); color: var(--text-dim); border: 1px solid rgba(232,196,184,0.12); padding: 10px 22px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Tajawal', sans-serif; transition: all 0.3s; }
+    .tab-btn:hover { color: var(--rose); border-color: rgba(232,196,184,0.3); }
+    .tab-btn.active { background: var(--rose); color: var(--dark); border-color: var(--rose); }
+    .tabs-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .skill-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(232,196,184,0.1); border-radius: 20px; padding: 28px 24px; transition: all 0.4s; }
+    .skill-card.hidden { display: none; }
+    .skill-card:hover { border-color: rgba(232,196,184,0.3); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+    .skill-card-icon { font-size: 32px; margin-bottom: 14px; display: block; }
+    .skill-card-title { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--rose-light); margin-bottom: 16px; }
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .skill-list li { font-size: 13px; color: var(--text-dim); display: flex; align-items: center; gap: 8px; font-weight: 400; }
+    .skill-list li::before { content: '✦'; color: var(--rose); font-size: 9px; flex-shrink: 0; }
     .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-
-    .project-card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(232,196,184,0.1);
-      border-radius: 20px;
-      padding: 32px;
-      transition: all 0.4s ease;
-      position: relative;
-    }
-
+    .project-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(232,196,184,0.1); border-radius: 20px; padding: 32px; transition: all 0.4s ease; position: relative; }
     .project-card:hover { transform: translateY(-8px); border-color: rgba(232,196,184,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
-
     .proj-icon { font-size: 40px; margin-bottom: 20px; display: block; }
-
     .project-card h3 { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--rose-light); margin-bottom: 12px; }
     .project-card p { font-size: 14px; color: var(--text-dim); line-height: 1.9; margin-bottom: 18px; font-weight: 300; }
-
     .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
-
-    .tech-tag {
-      background: rgba(184,164,232,0.08);
-      color: var(--lavender);
-      font-size: 11px;
-      padding: 4px 14px;
-      border-radius: 10px;
-      font-weight: 500;
-      border: 1px solid rgba(184,164,232,0.15);
-      font-family: 'Tajawal', sans-serif;
-    }
-
-    .play-btn {
-      display: inline-block;
-      position: relative;
-      z-index: 10;
-      background: rgba(232,196,184,0.1);
-      color: var(--rose);
-      padding: 9px 22px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 700;
-      transition: all 0.3s;
-      border: 1px solid rgba(232,196,184,0.2);
-      font-family: 'Tajawal', sans-serif;
-      cursor: pointer;
-    }
-
+    .tech-tag { background: rgba(184,164,232,0.08); color: var(--lavender); font-size: 11px; padding: 4px 14px; border-radius: 10px; font-weight: 500; border: 1px solid rgba(184,164,232,0.15); font-family: 'Tajawal', sans-serif; }
+    .play-btn { display: inline-block; position: relative; z-index: 10; background: rgba(232,196,184,0.1); color: var(--rose); padding: 9px 22px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 700; transition: all 0.3s; border: 1px solid rgba(232,196,184,0.2); font-family: 'Tajawal', sans-serif; cursor: pointer; }
     .play-btn:hover { background: var(--rose); color: var(--dark); transform: translateY(-2px); }
-
-    .card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(232,196,184,0.08);
-      border-radius: 16px;
-      padding: 24px;
-      transition: all 0.3s;
-      position: relative;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 2px; height: 0;
-      background: linear-gradient(180deg, var(--rose), transparent);
-      transition: height 0.4s;
-      border-radius: 2px;
-    }
-
+    .card { background: rgba(255,255,255,0.02); border: 1px solid rgba(232,196,184,0.08); border-radius: 16px; padding: 24px; transition: all 0.3s; position: relative; }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 0; background: linear-gradient(180deg, var(--rose), transparent); transition: height 0.4s; border-radius: 2px; }
     .card:hover { transform: translateY(-5px); border-color: rgba(232,196,184,0.2); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
     .card:hover::before { height: 100%; }
-
     .card h3 { font-size: 15px; color: var(--rose-light); margin-bottom: 8px; font-weight: 700; font-family: 'Tajawal', sans-serif; }
     .card p { font-size: 13px; color: var(--text-dim); margin-bottom: 4px; font-family: 'Tajawal', sans-serif; }
-
-    .full-width {
-      width: 100%;
-      padding: 100px 0;
-      position: relative;
-      z-index: 2;
-      border-top: 1px solid rgba(232,196,184,0.05);
-      border-bottom: 1px solid rgba(232,196,184,0.05);
-    }
-
+    .full-width { width: 100%; padding: 100px 0; position: relative; z-index: 2; border-top: 1px solid rgba(232,196,184,0.05); border-bottom: 1px solid rgba(232,196,184,0.05); }
     .full-width-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
-
-    .show-more-btn {
-      background: transparent;
-      color: var(--rose);
-      border: 1px solid rgba(232,196,184,0.3);
-      padding: 12px 36px;
-      border-radius: 30px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: 'Tajawal', sans-serif;
-      transition: all 0.3s;
-    }
-
-    .show-more-btn:hover { background: rgba(232,196,184,0.1); border-color: var(--rose); transform: translateY(-2px); }
-
-    .contact-section {
-      background: linear-gradient(135deg, rgba(30,16,64,0.9), rgba(22,13,46,0.9));
-      border-radius: 28px;
-      padding: 80px 40px;
-      text-align: center;
-      margin: 0 48px 100px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(232,196,184,0.12);
-      z-index: 2;
-    }
-
-    .contact-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at center, rgba(232,196,184,0.04), transparent 60%);
-      pointer-events: none;
-    }
-
+    .cert-card-group { width: 100%; }
+    .cert-card-group.hidden { display: none; }
+    .contact-section { background: linear-gradient(135deg, rgba(30,16,64,0.9), rgba(22,13,46,0.9)); border-radius: 28px; padding: 80px 40px; text-align: center; margin: 0 48px 100px; position: relative; overflow: hidden; border: 1px solid rgba(232,196,184,0.12); z-index: 2; }
+    .contact-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(232,196,184,0.04), transparent 60%); pointer-events: none; }
     .contact-section h2 { font-family: 'DM Serif Display', serif; font-size: 38px; color: var(--rose-light); margin-bottom: 16px; position: relative; }
     .contact-section h2::after { display: none; }
     .contact-section p { color: var(--text-dim); font-size: 16px; margin-bottom: 48px; position: relative; font-weight: 300; }
-
     .contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 2; }
-
-    .contact-link {
-      background: rgba(232,196,184,0.06);
-      color: var(--rose);
-      padding: 14px 28px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-      font-family: 'Tajawal', sans-serif;
-      transition: all 0.3s;
-      border: 1px solid rgba(232,196,184,0.15);
-    }
-
+    .contact-link { background: rgba(232,196,184,0.06); color: var(--rose); padding: 14px 28px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 14px; font-family: 'Tajawal', sans-serif; transition: all 0.3s; border: 1px solid rgba(232,196,184,0.15); }
     .contact-link:hover { background: var(--rose); color: var(--dark); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(232,196,184,0.2); }
-
-    footer {
-      background: rgba(0,0,0,0.4);
-      text-align: center;
-      padding: 28px 48px;
-      color: var(--text-dim);
-      font-size: 13px;
-      width: 100%;
-      margin-top: auto;
-      border-top: 1px solid rgba(232,196,184,0.06);
-      position: relative;
-      z-index: 2;
-      font-weight: 300;
-    }
-
-    /* Scroll to top button */
-    .scroll-top {
-      position: fixed;
-      bottom: 32px;
-      left: 32px;
-      background: var(--rose-dim);
-      color: var(--rose);
-      border: 1px solid rgba(232,196,184,0.3);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      font-size: 18px;
-      cursor: pointer;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s;
-      z-index: 999;
-    }
-
+    footer { background: rgba(0,0,0,0.4); text-align: center; padding: 28px 48px; color: var(--text-dim); font-size: 13px; width: 100%; margin-top: auto; border-top: 1px solid rgba(232,196,184,0.06); position: relative; z-index: 2; font-weight: 300; }
+    .scroll-top { position: fixed; bottom: 32px; left: 32px; background: var(--rose-dim); color: var(--rose); border: 1px solid rgba(232,196,184,0.3); width: 44px; height: 44px; border-radius: 50%; font-size: 18px; cursor: pointer; display: none; align-items: center; justify-content: center; transition: all 0.3s; z-index: 999; }
     .scroll-top.visible { display: flex; }
     .scroll-top:hover { background: var(--rose); color: var(--dark); transform: translateY(-3px); }
-
-    @media (max-width: 1024px) {
-      .cards-grid { grid-template-columns: repeat(2, 1fr); }
-      nav { padding: 16px 24px; }
-    }
-
-    @media (max-width: 768px) {
-      .cards-grid { grid-template-columns: 1fr; }
-      header h1 { font-size: 34px; }
-      nav { flex-wrap: wrap; gap: 12px; padding: 12px 16px; }
-      .nav-links { display: none; }
-      section { padding: 60px 20px; }
-      .full-width-inner { padding: 0 20px; }
-      .full-width { padding: 60px 0; }
-      .contact-section { margin: 0 16px 60px; padding: 48px 20px; }
-      .hero-btns { flex-direction: column; align-items: center; }
-      .btn-primary, .btn-outline { width: 100%; text-align: center; }
-      footer { padding: 24px 16px; }
-    }
-
-    @media (max-width: 480px) {
-      header { padding: 40px 20px; }
-      section h2, .full-width-inner h2 { font-size: 30px; }
-    }
+    @media (max-width: 1024px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } nav { padding: 16px 24px; } }
+    @media (max-width: 768px) { .cards-grid { grid-template-columns: 1fr; } .tabs-content { grid-template-columns: 1fr; } header h1 { font-size: 34px; } nav { flex-wrap: wrap; gap: 12px; padding: 12px 16px; } .nav-links { display: none; } section { padding: 60px 20px; } .full-width-inner { padding: 0 20px; } .full-width { padding: 60px 0; } .contact-section { margin: 0 16px 60px; padding: 48px 20px; } .hero-btns { flex-direction: column; align-items: center; } .btn-primary, .btn-outline { width: 100%; text-align: center; } footer { padding: 24px 16px; } .tab-btn { font-size: 12px; padding: 8px 14px; } }
+    @media (max-width: 480px) { header { padding: 40px 20px; } section h2, .full-width-inner h2 { font-size: 30px; } }
   </style>
 </head>
-
 <body>
 
   <canvas id="crystalCanvas"></canvas>
-
-  <!-- Scroll to top -->
   <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
   <nav>
@@ -485,7 +117,7 @@
       <li><a href="#contact" data-ar="للتواصل" data-en="Contact">Contact</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="AMJADCv.pdf" download class="cv-btn" id="cvBtn" data-ar="السيرة الذاتية" data-en="Download CV">Download CV</a>
+      <a href="AMJADCvTech.pdf" download class="cv-btn" id="cvBtn" data-ar="السيرة الذاتية" data-en="Download CV">Download CV</a>
       <button class="lang-toggle" id="langBtn" onclick="toggleLang()">عربي</button>
     </div>
   </nav>
@@ -499,7 +131,7 @@
       <p data-ar="خريجة علوم حاسب وأتطلع للانضمام لبيئة عمل تُنمّي مهاراتي ✨" data-en="A Computer Science graduate looking to join an environment that develops my skills ✨">A Computer Science graduate looking to join an environment that develops my skills ✨</p>
       <p data-ar="التخصص: علوم الحاسب | التخصص الفرعي: البرمجة وعلوم الحاسب" data-en="Major: Computer Science | Minor: Programming & Computer Science">Major: Computer Science | Minor: Programming & Computer Science</p>
       <div class="hero-btns">
-        <a href="#projects" class="btn-primary" data-ar="شوف أعمالي" data-en="View My Work">View My Work</a>
+        <a href="#projects" class="btn-primary" data-ar="اطلع على أعمالي" data-en="View My Work">View My Work</a>
         <a href="#contact" class="btn-outline" data-ar="أبحث عن فرصة لتطوير مهاراتي" data-en="Contact Me">Contact Me</a>
       </div>
     </div>
@@ -508,32 +140,63 @@
   <section id="about">
     <h2 class="reveal" data-ar="من أنا؟" data-en="About Me">About Me</h2>
     <p class="about-text reveal"
-      data-ar="خريجة علوم حاسب، حاصلة على لقب سفيرة المملكة في برنامج جلوب البيئي عام 2015، وشهادتين من أكاديمية طويق في الحوسبة السحابية، وتصميم وبرمجة الألعاب. أمتلك خبرة في أكثر من مجال تشمل أخصائي علاقات عامة، مساعد إداري، ودعم تقنية المعلومات. أسعى للتطوير المهني والبحث عن فرص تُنمّي مهاراتي ✨."
-      data-en="A Computer Science graduate, honored as Saudi Arabia's Ambassador in the GLOBE Program 2015, and holder of two certifications from Tuwaiq Academy in Cloud Computing and Game Design & Programming. I have diverse experience as a Public Relations Specialist, Administrative Assistant, and IT Support. I'm seeking professional growth and opportunities to develop my skills ✨.">
-      A Computer Science graduate, honored as Saudi Arabia's Ambassador in the GLOBE Program 2015, and holder of two certifications from Tuwaiq Academy in Cloud Computing and Game Design & Programming. I have diverse experience as a Public Relations Specialist, Administrative Assistant, and IT Support. I'm seeking professional growth and opportunities to develop my skills ✨.
+      data-ar="خريجة علوم حاسب وشغوفة بتطوير الويب وبناء الألعاب التفاعلية المبتكرة. صقلت مهاراتي التقنية من خلال برامج مكثفة في أكاديمية طويق (تطوير الألعاب والحوسبة السحابية)، مدعومة بخبرة عملية في الدعم الفني. أمتلك عقلية تحليلية ومنهجية علمية نمت معي منذ تمثيلي للمملكة كسفيرة لبرنامج جلوب الدولي 2015؛ وأسعى اليوم لتوظيف هذه المهارات في تقديم حلول برمجية ذكية وتجارب مستخدم مميزة ✨."
+      data-en="A Computer Science graduate passionate about web development and building innovative, interactive games. I sharpened my technical skills through intensive programs at Tuwaiq Academy (Game Development & Cloud Computing), backed by hands-on experience in IT support. I possess an analytical mindset and a scientific methodology that have grown with me since representing the Kingdom as an ambassador for the international GLOBE Program in 2015. Today, I look forward to leveraging these skills to deliver smart software solutions and exceptional user experiences ✨.">
+      A Computer Science graduate passionate about web development and building innovative, interactive games. I sharpened my technical skills through intensive programs at Tuwaiq Academy (Game Development & Cloud Computing), backed by hands-on experience in IT support. I possess an analytical mindset and a scientific methodology that have grown with me since representing the Kingdom as an ambassador for the international GLOBE Program in 2015. Today, I look forward to leveraging these skills to deliver smart software solutions and exceptional user experiences ✨.
     </p>
 
-    <div class="skills-heading reveal" data-ar="المهارات الشخصية" data-en="Soft Skills">Soft Skills</div>
-    <div class="reveal" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:12px; margin-bottom:52px;">
-      <span class="skill-tag" data-ar="التواصل الفعّال" data-en="Communication">Communication</span>
-      <span class="skill-tag" data-ar="التنظيم وإدارة المهام" data-en="Organization & Task Management">Organization & Task Management</span>
-
-      <span class="skill-tag" data-ar="العمل ضمن فريق" data-en="Teamwork">Teamwork</span>
-      <span class="skill-tag" data-ar="حل المشكلات" data-en="Problem Solving">Problem Solving</span>
-      <span class="skill-tag" data-ar="التكيّف مع بيئة العمل" data-en="Adaptability">Adaptability</span>
-    </div>
-
-    <div class="skills-heading reveal" data-ar="المهارات التقنية" data-en="Technical Skills">Technical Skills</div>
-    <div class="reveal" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:12px;">
-      <span class="skill-tag">Microsoft Office</span>
-      <span class="skill-tag">IT Support</span>
-      <span class="skill-tag">AI & Machine Learning</span>
-      <span class="skill-tag">Cloud Computing</span>
-      <span class="skill-tag">JavaScript</span>
-      <span class="skill-tag">Unity</span>
-      <span class="skill-tag">HTML</span>
-      <span class="skill-tag">CSS</span>
-      <span class="skill-tag">C#</span>
+    <div class="reveal">
+      <h2 data-ar="مهاراتي" data-en="My Skills" style="margin-bottom:24px;">My Skills</h2>
+      <p class="tab-hint">✦ <span data-ar="اضغط على تبويب لعرض المهارات — اضغط مرة ثانية لإغلاقه" data-en="Tap a tab to explore — tap again to close">Tap a tab to explore — tap again to close</span></p>
+      <div class="tabs-nav">
+        <button class="tab-btn" onclick="switchTab(this,'programming')" data-ar="البرمجة" data-en="Core Programming">Core Programming</button>
+        <button class="tab-btn" onclick="switchTab(this,'web')" data-ar="تطوير الويب" data-en="Web Dev">Web Dev</button>
+        <button class="tab-btn" onclick="switchTab(this,'game')" data-ar="تطوير الألعاب" data-en="Game Dev">Game Dev</button>
+        <button class="tab-btn" onclick="switchTab(this,'tools')" data-ar="الأدوات" data-en="Tools">Tools</button>
+        <button class="tab-btn" onclick="switchTab(this,'soft')" data-ar="الشخصية" data-en="Soft Skills">Soft Skills</button>
+      </div>
+      <div class="tabs-content">
+        <div class="skill-card hidden" data-category="programming">
+          <span class="skill-card-icon">💻</span>
+          <h4 class="skill-card-title" data-ar="البرمجة الأساسية" data-en="Core Programming">Core Programming</h4>
+          <ul class="skill-list"><li>C#</li><li>JavaScript (ES6+)</li><li>HTML5 &amp; CSS3</li></ul>
+        </div>
+        <div class="skill-card hidden" data-category="web">
+          <span class="skill-card-icon">🌐</span>
+          <h4 class="skill-card-title" data-ar="تطوير الويب" data-en="Web Development">Web Development</h4>
+          <ul class="skill-list">
+            <li data-ar="تصميم متجاوب" data-en="Responsive Web Design">Responsive Web Design</li>
+            <li>DOM Manipulation</li><li>CSS Flexbox &amp; Grid</li><li>Bootstrap / Tailwind CSS</li>
+          </ul>
+        </div>
+        <div class="skill-card hidden" data-category="game">
+          <span class="skill-card-icon">🎮</span>
+          <h4 class="skill-card-title" data-ar="تطوير الألعاب" data-en="Game Development">Game Development</h4>
+          <ul class="skill-list">
+            <li>Unity Engine (2D / 3D)</li><li>C# Gameplay Scripting</li>
+            <li data-ar="فيزياء الألعاب وتصميم الواجهة" data-en="Game Physics &amp; UI Design">Game Physics &amp; UI Design</li>
+            <li>Itch.io Deployment</li>
+          </ul>
+        </div>
+        <div class="skill-card hidden" data-category="tools">
+          <span class="skill-card-icon">🛠️</span>
+          <h4 class="skill-card-title" data-ar="الأدوات والبنية التحتية" data-en="Tools & Infrastructure">Tools &amp; Infrastructure</h4>
+          <ul class="skill-list">
+            <li>Git &amp; GitHub</li><li>Alibaba Cloud Services</li>
+            <li data-ar="دعم تقنية المعلومات" data-en="IT Support & Troubleshooting">IT Support &amp; Troubleshooting</li>
+          </ul>
+        </div>
+        <div class="skill-card hidden" data-category="soft">
+          <span class="skill-card-icon">🧠</span>
+          <h4 class="skill-card-title" data-ar="المهارات الشخصية" data-en="Soft Skills">Soft Skills</h4>
+          <ul class="skill-list">
+            <li data-ar="التفكير المنطقي والخوارزمي" data-en="Logical & Algorithmic Thinking">Logical &amp; Algorithmic Thinking</li>
+            <li data-ar="تصحيح الأخطاء وحل المشكلات" data-en="Debugging & Critical Problem-Solving">Debugging &amp; Critical Problem-Solving</li>
+            <li data-ar="وعي تجربة المستخدم" data-en="User Experience (UX) Awareness">User Experience (UX) Awareness</li>
+            <li data-ar="التعلم الذاتي السريع" data-en="Self-Driven & Fast Learning">Self-Driven &amp; Fast Learning</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -541,26 +204,36 @@
     <div class="full-width-inner">
       <h2 class="reveal" data-ar="مشاريعي" data-en="My Projects">My Projects</h2>
       <div class="cards-grid">
+
+        <!-- Project 1: Personal Portfolio -->
         <div class="project-card reveal">
           <span class="proj-icon">🌐</span>
           <h3 data-ar="موقعي الشخصي" data-en="Personal Portfolio">Personal Portfolio</h3>
           <p data-ar="موقع شخصي كامل يعرض مهاراتي ومشاريعي وشهاداتي، مع دعم اللغتين العربية والإنجليزية." data-en="A complete personal portfolio showcasing my skills, projects, and certificates with Arabic and English support.">A complete personal portfolio showcasing my skills, projects, and certificates with Arabic and English support.</p>
-          <div class="tech-tags">
-            <span class="tech-tag">HTML</span>
-            <span class="tech-tag">CSS</span>
-            <span class="tech-tag">JavaScript</span>
-          </div>
+          <div class="tech-tags"><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">JavaScript</span></div>
+          <a href="#" target="_blank" class="play-btn">🔗 View on GitHub</a>
         </div>
+
+        <!-- Project 2: Beauty Salon — أضيفي الكود لاحقاً -->
         <div class="project-card reveal">
           <span class="proj-icon">💅</span>
           <h3>Beauty Salon Website</h3>
           <p data-ar="موقع متجاوب لصالون تجميل يتضمن عرض الخدمات وحجز المواعيد وواجهة مستخدم تفاعلية." data-en="A responsive beauty salon website with service listings, appointment booking, and an interactive interface.">A responsive beauty salon website with service listings, appointment booking, and an interactive interface.</p>
-          <div class="tech-tags">
-            <span class="tech-tag">HTML</span>
-            <span class="tech-tag">CSS</span>
-            <span class="tech-tag">JavaScript</span>
-          </div>
+          <div class="tech-tags"><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">JavaScript</span></div>
+          <a href="#" target="_blank" class="play-btn">🔗 View on GitHub</a>
         </div>
+
+        <!-- Project 3: مشروع إضافي — أضيفيه لاحقاً -->
+        <!-- 
+        <div class="project-card reveal">
+          <span class="proj-icon">🚀</span>
+          <h3>Project Name</h3>
+          <p>Project description here.</p>
+          <div class="tech-tags"><span class="tech-tag">Tech</span></div>
+          <a href="#" target="_blank" class="play-btn">🔗 View Code</a>
+        </div>
+        -->
+
       </div>
     </div>
   </div>
@@ -572,22 +245,14 @@
         <span class="proj-icon">🎮</span>
         <h3>Silent Collision</h3>
         <p data-ar="لعبة أكشن ثلاثية الأبعاد مبنية من الصفر تتضمن تفاعلات اللاعب والعدو، الحركة، نظام الصحة، بيئات غامرة، مؤثرات بصرية وصوتية، وواجهة مستخدم متجاوبة." data-en="A complete 3D action game built from scratch with player-enemy interactions, movement, health systems, immersive environments, VFX, sound effects, and responsive UI.">A complete 3D action game built from scratch with player-enemy interactions, movement, health systems, immersive environments, VFX, sound effects, and responsive UI.</p>
-        <div class="tech-tags">
-          <span class="tech-tag">Unity</span>
-          <span class="tech-tag">C#</span>
-          <span class="tech-tag">3D Design</span>
-        </div>
+        <div class="tech-tags"><span class="tech-tag">Unity</span><span class="tech-tag">C#</span><span class="tech-tag">3D Design</span></div>
         <a href="https://amjadals.itch.io/tuwaiq-projectamjad-alshehri" target="_blank" class="play-btn">🎮 Play on itch.io</a>
       </div>
       <div class="project-card reveal">
         <span class="proj-icon">🌊</span>
         <h3>Beneath The Waves</h3>
         <p data-ar="لعبة أكشن ثلاثية الأبعاد مبنية من الصفر تتضمن تفاعلات اللاعب والعدو، الحركة، نظام الصحة، بيئات غامرة، مؤثرات بصرية وصوتية، وواجهة مستخدم متجاوبة." data-en="A complete 3D action game built from scratch with player-enemy interactions, movement, health systems, immersive environments, VFX, sound effects, and responsive UI.">A complete 3D action game built from scratch with player-enemy interactions, movement, health systems, immersive environments, VFX, sound effects, and responsive UI.</p>
-        <div class="tech-tags">
-          <span class="tech-tag">Unity</span>
-          <span class="tech-tag">C#</span>
-          <span class="tech-tag">3D Design</span>
-        </div>
+        <div class="tech-tags"><span class="tech-tag">Unity</span><span class="tech-tag">C#</span><span class="tech-tag">3D Design</span></div>
         <a href="https://amjadals.itch.io/beneath-the-waves" target="_blank" class="play-btn">🎮 Play on itch.io</a>
       </div>
     </div>
@@ -596,39 +261,50 @@
   <div class="full-width" id="certificates">
     <div class="full-width-inner">
       <h2 class="reveal" data-ar="شهاداتي" data-en="My Certificates">My Certificates</h2>
-      <div class="cards-grid reveal">
-        <div class="card"><h3>Cloud Computing and Artificial Intelligence Program</h3><p>Tuwaiq Academy</p><p>Feb 2026</p></div>
-        <div class="card"><h3>Game Design and Programming Program</h3><p>Tuwaiq Academy</p><p>Nov 2025</p></div>
-        <div class="card"><h3>Google IT Support</h3><p>Google</p><p>Oct 2025</p></div>
-      </div>
-      <div id="moreCerts" style="display:none; margin-top:24px;">
-        <div class="cards-grid">
-          <div class="card"><h3>Cloud Computing Engineer</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
-          <div class="card"><h3>ApsaraDB RDS Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
-          <div class="card"><h3>Dive Into Generative AI</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
-          <div class="card"><h3>Using Generative AI Ethically and Responsibly</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
-          <div class="card"><h3>OSS Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
-          <div class="card"><h3>ECS Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
-          <div class="card"><h3>SLB Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
-          <div class="card"><h3>VPC Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
-          <div class="card"><h3>Technical Support Fundamentals</h3><p>Google</p><p>Sep 2025</p></div>
-          <div class="card"><h3>Artificial Intelligence Concepts and Advanced Applications</h3><p>SDAIA | سدايا</p><p>Sep 2025</p></div>
-          <div class="card"><h3>Fundamentals of Artificial Intelligence</h3><p>SDAIA | سدايا</p><p>Sep 2025</p></div>
-          <div class="card"><h3>The Bits and Bytes of Computer Networking</h3><p>Google — Coursera</p><p>2025</p></div>
-          <div class="card"><h3>Operating Systems and You: Becoming a Power User</h3><p>Google — Coursera</p><p>2025</p></div>
-          <div class="card"><h3>System Administration and IT Infrastructure Services</h3><p>Google — Coursera</p><p>2025</p></div>
-          <div class="card"><h3>IT Security: Defense Against the Digital Dark Arts</h3><p>Google — Coursera</p><p>2025</p></div>
-          <div class="card"><h3>Accelerate Your Job Search with AI</h3><p>Google — Coursera</p><p>2025</p></div>
-          <div class="card"><h3>Web Development</h3><p>Doroob | دروب</p><p>Nov 2023</p></div>
-          <div class="card"><h3>Microsoft Excel</h3><p>Doroob | دروب</p><p>Mar 2023</p></div>
+      <div class="reveal">
+        <p class="tab-hint">✦ <span data-ar="اضغط على تبويب لعرض الشهادات — اضغط مرة ثانية لإغلاقه" data-en="Tap a tab to explore — tap again to close">Tap a tab to explore — tap again to close</span></p>
+        <div class="tabs-nav">
+          <button class="tab-btn" onclick="switchCertTab(this,'tuwaiq')" data-ar="أكاديمية طويق" data-en="Tuwaiq Academy">Tuwaiq Academy</button>
+          <button class="tab-btn" onclick="switchCertTab(this,'google')" data-ar="جوجل" data-en="Google">Google</button>
+          <button class="tab-btn" onclick="switchCertTab(this,'alibaba')" data-ar="علي بابا كلاود" data-en="Alibaba Cloud">Alibaba Cloud</button>
+          <button class="tab-btn" onclick="switchCertTab(this,'sdaia')" data-ar="سدايا" data-en="SDAIA">SDAIA</button>
         </div>
-      </div>
-      <div style="text-align:center; margin-top:40px;">
-        <button onclick="toggleCerts()" id="certsBtn" class="show-more-btn reveal"
-          data-ar-more="عرض المزيد ↓" data-en-more="Show More ↓"
-          data-ar-less="عرض أقل ↑" data-en-less="Show Less ↑">
-          Show More ↓
-        </button>
+        <div class="tabs-content">
+          <div class="cert-card-group hidden" data-cert="tuwaiq">
+            <div class="cards-grid">
+              <div class="card"><h3>Cloud Computing and Artificial Intelligence Program</h3><p>Tuwaiq Academy</p><p>Feb 2026</p></div>
+              <div class="card"><h3>Game Design and Programming Program</h3><p>Tuwaiq Academy</p><p>Nov 2025</p></div>
+            </div>
+          </div>
+          <div class="cert-card-group hidden" data-cert="google">
+            <div class="cards-grid">
+              <div class="card"><h3>Google IT Support</h3><p>Google</p><p>Oct 2025</p></div>
+              <div class="card"><h3>Technical Support Fundamentals</h3><p>Google — Coursera</p><p>Sep 2025</p></div>
+              <div class="card"><h3>IT Security: Defense Against the Digital Dark Arts</h3><p>Google — Coursera</p><p>2025</p></div>
+              <div class="card"><h3>System Administration and IT Infrastructure Services</h3><p>Google — Coursera</p><p>2025</p></div>
+              <div class="card"><h3>Operating Systems and You: Becoming a Power User</h3><p>Google — Coursera</p><p>2025</p></div>
+              <div class="card"><h3>The Bits and Bytes of Computer Networking</h3><p>Google — Coursera</p><p>2025</p></div>
+            </div>
+          </div>
+          <div class="cert-card-group hidden" data-cert="alibaba">
+            <div class="cards-grid">
+              <div class="card"><h3>Cloud Computing Engineer</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+              <div class="card"><h3>Dive Into Generative AI</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+              <div class="card"><h3>Using Generative AI Ethically and Responsibly</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+              <div class="card"><h3>ApsaraDB RDS Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+              <div class="card"><h3>ECS Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+              <div class="card"><h3>OSS Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+              <div class="card"><h3>SLB Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+              <div class="card"><h3>VPC Fundamentals</h3><p>Alibaba Cloud</p><p>Feb 2026</p></div>
+            </div>
+          </div>
+          <div class="cert-card-group hidden" data-cert="sdaia">
+            <div class="cards-grid">
+              <div class="card"><h3>Artificial Intelligence Concepts and Advanced Applications</h3><p>SDAIA</p><p>Sep 2025</p></div>
+              <div class="card"><h3>Fundamentals of Artificial Intelligence</h3><p>SDAIA</p><p>Sep 2025</p></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -649,127 +325,101 @@
   </footer>
 
   <script>
-    // Diamond crystals
     const canvas = document.getElementById('crystalCanvas');
     const ctx = canvas.getContext('2d');
-
     function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
     resize();
     window.addEventListener('resize', resize);
-
     class Diamond {
       constructor() { this.reset(true); }
       reset(initial = false) {
         this.x = Math.random() * canvas.width;
         this.y = initial ? Math.random() * canvas.height : canvas.height + 20;
-        this.size = Math.random() * 1 + 1;
-        this.speedY = Math.random() * 0.4 + 0.15;
-        this.speedX = (Math.random() - 0.5) * 0.3;
-        this.rotation = Math.random() * Math.PI;
-        this.rotSpeed = (Math.random() - 0.5) * 0.02;
-        this.pulse = Math.random() * Math.PI * 2;
-        this.pulseSpeed = Math.random() * 0.03 + 0.01;
-        this.isRose = Math.random() > 0.4;
+        this.size = Math.random() * 1 + 1; this.speedY = Math.random() * 0.4 + 0.15;
+        this.speedX = (Math.random() - 0.5) * 0.3; this.rotation = Math.random() * Math.PI;
+        this.rotSpeed = (Math.random() - 0.5) * 0.02; this.pulse = Math.random() * Math.PI * 2;
+        this.pulseSpeed = Math.random() * 0.03 + 0.01; this.isRose = Math.random() > 0.4;
       }
       draw() {
-        this.pulse += this.pulseSpeed;
-        this.rotation += this.rotSpeed;
-        this.y -= this.speedY;
-        this.x += this.speedX;
+        this.pulse += this.pulseSpeed; this.rotation += this.rotSpeed;
+        this.y -= this.speedY; this.x += this.speedX;
         if (this.y < -20) this.reset();
         const glow = (Math.sin(this.pulse) + 1) / 2;
         const s = this.size * (0.8 + glow * 0.4);
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation);
+        ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.rotation);
         const r = this.isRose ? `255, ${180 + glow * 40}, ${160 + glow * 40}` : `220, 210, ${240 + glow * 15}`;
         const alpha = 0.5 + glow * 0.5;
-        const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, s * 4);
-        grad.addColorStop(0, `rgba(${r}, ${alpha * 0.6})`);
-        grad.addColorStop(0.5, `rgba(${r}, ${alpha * 0.2})`);
-        grad.addColorStop(1, `rgba(${r}, 0)`);
+        const grad = ctx.createRadialGradient(0,0,0,0,0,s*4);
+        grad.addColorStop(0,`rgba(${r},${alpha*0.6})`); grad.addColorStop(0.5,`rgba(${r},${alpha*0.2})`); grad.addColorStop(1,`rgba(${r},0)`);
+        ctx.beginPath(); ctx.arc(0,0,s*4,0,Math.PI*2); ctx.fillStyle=grad; ctx.fill();
         ctx.beginPath();
-        ctx.arc(0, 0, s * 4, 0, Math.PI * 2);
-        ctx.fillStyle = grad;
-        ctx.fill();
-        ctx.beginPath();
-        ctx.moveTo(0, -s * 1.8);
-        ctx.lineTo(s * 1.2, -s * 0.3);
-        ctx.lineTo(s * 0.8, s * 1.5);
-        ctx.lineTo(0, s * 2);
-        ctx.lineTo(-s * 0.8, s * 1.5);
-        ctx.lineTo(-s * 1.2, -s * 0.3);
-        ctx.closePath();
-        const fillGrad = ctx.createLinearGradient(-s, -s * 2, s, s * 2);
-        fillGrad.addColorStop(0, `rgba(${r}, ${alpha})`);
-        fillGrad.addColorStop(0.3, `rgba(255, 255, 255, ${alpha * 0.9})`);
-        fillGrad.addColorStop(0.6, `rgba(${r}, ${alpha * 0.7})`);
-        fillGrad.addColorStop(1, `rgba(${r}, ${alpha * 0.4})`);
-        ctx.fillStyle = fillGrad;
-        ctx.shadowColor = `rgba(${r}, 0.9)`;
-        ctx.shadowBlur = s * 15;
-        ctx.fill();
-        ctx.beginPath();
-        ctx.moveTo(-s * 0.2, -s * 1.5);
-        ctx.lineTo(s * 0.4, -s * 0.5);
-        ctx.lineTo(0, -s * 0.3);
-        ctx.closePath();
-        ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.8})`;
-        ctx.shadowBlur = 0;
-        ctx.fill();
+        ctx.moveTo(0,-s*1.8); ctx.lineTo(s*1.2,-s*0.3); ctx.lineTo(s*0.8,s*1.5);
+        ctx.lineTo(0,s*2); ctx.lineTo(-s*0.8,s*1.5); ctx.lineTo(-s*1.2,-s*0.3); ctx.closePath();
+        const fg=ctx.createLinearGradient(-s,-s*2,s,s*2);
+        fg.addColorStop(0,`rgba(${r},${alpha})`); fg.addColorStop(0.3,`rgba(255,255,255,${alpha*0.9})`);
+        fg.addColorStop(0.6,`rgba(${r},${alpha*0.7})`); fg.addColorStop(1,`rgba(${r},${alpha*0.4})`);
+        ctx.fillStyle=fg; ctx.shadowColor=`rgba(${r},0.9)`; ctx.shadowBlur=s*15; ctx.fill();
+        ctx.beginPath(); ctx.moveTo(-s*0.2,-s*1.5); ctx.lineTo(s*0.4,-s*0.5); ctx.lineTo(0,-s*0.3);
+        ctx.closePath(); ctx.fillStyle=`rgba(255,255,255,${alpha*0.8})`; ctx.shadowBlur=0; ctx.fill();
         ctx.restore();
       }
     }
-
-    const diamonds = [];
-    for (let i = 0; i < 35; i++) diamonds.push(new Diamond());
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      diamonds.forEach(d => d.draw());
-      requestAnimationFrame(animate);
-    }
+    const diamonds=[];
+    for(let i=0;i<35;i++) diamonds.push(new Diamond());
+    function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);diamonds.forEach(d=>d.draw());requestAnimationFrame(animate);}
     animate();
 
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 80);
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    const observer=new IntersectionObserver((entries)=>{
+      entries.forEach((entry,i)=>{if(entry.isIntersecting)setTimeout(()=>entry.target.classList.add('visible'),i*80);});
+    },{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-    // Scroll to top button
-    window.addEventListener('scroll', () => {
-      document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
+    window.addEventListener('scroll',()=>{
+      document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400);
     });
 
-    // Language — starts in English
-    let currentLang = 'en';
-    let certsVisible = false;
-
-    function toggleLang() {
-      currentLang = currentLang === 'ar' ? 'en' : 'ar';
-      setLang(currentLang);
+    let currentLang='en';
+    function toggleLang(){currentLang=currentLang==='ar'?'en':'ar';setLang(currentLang);}
+    function setLang(lang){
+      document.documentElement.lang=lang;
+      document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+      document.querySelectorAll('[data-ar]').forEach(el=>{el.textContent=el.getAttribute('data-'+lang);});
+      document.getElementById('langBtn').textContent=lang==='ar'?'English':'عربي';
     }
 
-    function setLang(lang) {
-      document.documentElement.lang = lang;
-      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-      document.querySelectorAll('[data-ar]').forEach(el => { el.textContent = el.getAttribute('data-' + lang); });
-      document.getElementById('langBtn').textContent = lang === 'ar' ? 'English' : 'عربي';
-      const btn = document.getElementById('certsBtn');
-      btn.textContent = certsVisible ? btn.getAttribute('data-' + lang + '-less') : btn.getAttribute('data-' + lang + '-more');
+    // Skills tabs — toggle open/close
+    let activeSkillTab = null;
+    function switchTab(btn, category) {
+      if (activeSkillTab === category) {
+        // Same tab clicked — close it
+        document.querySelectorAll('.skill-card').forEach(c => c.classList.add('hidden'));
+        btn.classList.remove('active');
+        activeSkillTab = null;
+      } else {
+        // New tab — open it
+        document.querySelectorAll('#about .tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.skill-card').forEach(c => c.classList.toggle('hidden', c.dataset.category !== category));
+        btn.classList.add('active');
+        activeSkillTab = category;
+      }
     }
 
-    // Certificates
-    function toggleCerts() {
-      certsVisible = !certsVisible;
-      const btn = document.getElementById('certsBtn');
-      document.getElementById('moreCerts').style.display = certsVisible ? 'block' : 'none';
-      btn.textContent = certsVisible ? btn.getAttribute('data-' + currentLang + '-less') : btn.getAttribute('data-' + currentLang + '-more');
+    // Cert tabs — toggle open/close
+    let activeCertTab = null;
+    function switchCertTab(btn, category) {
+      if (activeCertTab === category) {
+        // Same tab clicked — close it
+        document.querySelectorAll('.cert-card-group').forEach(g => g.classList.add('hidden'));
+        btn.classList.remove('active');
+        activeCertTab = null;
+      } else {
+        // New tab — open it
+        document.querySelectorAll('#certificates .tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.cert-card-group').forEach(g => g.classList.toggle('hidden', g.dataset.cert !== category));
+        btn.classList.add('active');
+        activeCertTab = category;
+      }
     }
   </script>
-
 </body>
 </html>
