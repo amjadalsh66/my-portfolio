@@ -35,7 +35,7 @@
     .orb-1 { width: 500px; height: 500px; background: rgba(184,164,232,0.08); top: -150px; right: -150px; animation: breathe 6s ease-in-out infinite; }
     .orb-2 { width: 350px; height: 350px; background: rgba(232,196,184,0.06); bottom: -80px; left: -80px; animation: breathe 8s ease-in-out infinite reverse; }
     @keyframes breathe { 0%, 100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.15); opacity: 0.8; } }
-    .hero-content { position: relative; z-index: 2; animation: heroFadeUp 1.2s cubic-bezier(0.4,0,0.2,1) forwards; }
+    .hero-content { position: relative; z-index: 2; animation: heroFadeUp 1.2s cubic-bezier(0.4,0,0.2,1) forwards; width: 100%; max-width: 700px; }
     @keyframes heroFadeUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
     .hero-tag { display: inline-block; background: rgba(232,196,184,0.08); color: var(--rose); padding: 8px 28px; border-radius: 30px; font-size: 13px; font-weight: 500; margin-bottom: 32px; border: 1px solid rgba(232,196,184,0.2); letter-spacing: 3px; }
     header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 7vw, 80px); color: var(--rose-light); margin-bottom: 24px; line-height: 1.1; text-shadow: 0 0 60px rgba(232,196,184,0.2); }
@@ -98,8 +98,31 @@
     .scroll-top.visible { display: flex; }
     .scroll-top:hover { background: var(--rose); color: var(--dark); transform: translateY(-3px); }
     @media (max-width: 1024px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } nav { padding: 16px 24px; } }
-    @media (max-width: 768px) { .cards-grid { grid-template-columns: 1fr; } .tabs-content { grid-template-columns: 1fr; } header h1 { font-size: 34px; } nav { flex-wrap: wrap; gap: 12px; padding: 12px 16px; } .nav-links { display: none; } section { padding: 60px 20px; } .full-width-inner { padding: 0 20px; } .full-width { padding: 60px 0; } .contact-section { margin: 0 16px 60px; padding: 48px 20px; } .hero-btns { flex-direction: column; align-items: center; } .btn-primary, .btn-outline { width: 100%; text-align: center; } footer { padding: 24px 16px; } .tab-btn { font-size: 12px; padding: 8px 14px; } }
-    @media (max-width: 480px) { header { padding: 40px 20px; } section h2, .full-width-inner h2 { font-size: 30px; } }
+    @media (max-width: 768px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .tabs-content { grid-template-columns: 1fr; }
+      header { padding: 80px 24px; }
+      header h1 { font-size: 30px; }
+      header p { font-size: 14px; max-width: 100%; }
+      nav { flex-wrap: wrap; gap: 12px; padding: 12px 16px; }
+      .nav-links { display: none; }
+      section { padding: 60px 24px; }
+      .full-width-inner { padding: 0 24px; }
+      .full-width { padding: 60px 0; }
+      .contact-section { margin: 0 16px 60px; padding: 48px 20px; }
+      .hero-btns { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-outline { width: 100%; text-align: center; }
+      footer { padding: 24px 16px; }
+      .tab-btn { font-size: 12px; padding: 8px 14px; }
+      .about-text { font-size: 15px; }
+    }
+    @media (max-width: 480px) {
+      header { padding: 60px 20px; }
+      header h1 { font-size: 26px; }
+      header p { font-size: 13px; }
+      section h2, .full-width-inner h2 { font-size: 26px; }
+      .hero-content { width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -147,7 +170,7 @@
 
     <div class="reveal">
       <h2 data-ar="مهاراتي" data-en="My Skills" style="margin-bottom:24px;">My Skills</h2>
-      <p class="tab-hint">✦ <span data-ar="اضغط على تبويب لعرض المهارات — اضغط مرة ثانية لإغلاقه" data-en="Tap a tab to explore — tap again to close">Tap a tab to explore — tap again to close</span></p>
+      <p class="tab-hint">✦ <span data-ar="اختر قسمًا للاستكشاف." data-en="Click to explore">Click to explore</span></p>
       <div class="tabs-nav">
         <button class="tab-btn" onclick="switchTab(this,'programming')" data-ar="البرمجة" data-en="Core Programming">Core Programming</button>
         <button class="tab-btn" onclick="switchTab(this,'web')" data-ar="تطوير الويب" data-en="Web Dev">Web Dev</button>
@@ -262,7 +285,7 @@
     <div class="full-width-inner">
       <h2 class="reveal" data-ar="شهاداتي" data-en="My Certificates">My Certificates</h2>
       <div class="reveal">
-        <p class="tab-hint">✦ <span data-ar="اضغط على تبويب لعرض الشهادات — اضغط مرة ثانية لإغلاقه" data-en="Tap a tab to explore — tap again to close">Tap a tab to explore — tap again to close</span></p>
+        <p class="tab-hint">✦ <span data-ar="اختر قسمًا للاستكشاف." data-en="Click to explore">Click to explore</span></p>
         <div class="tabs-nav">
           <button class="tab-btn" onclick="switchCertTab(this,'tuwaiq')" data-ar="أكاديمية طويق" data-en="Tuwaiq Academy">Tuwaiq Academy</button>
           <button class="tab-btn" onclick="switchCertTab(this,'google')" data-ar="جوجل" data-en="Google">Google</button>
