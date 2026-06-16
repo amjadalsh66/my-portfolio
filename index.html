@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Amjad Alshahri - Computer Science Graduate | Portfolio showcasing projects, games, and certifications.">
+  <meta name="description" content="Amjad Mohammed Alshahri - Computer Science Graduate | Portfolio showcasing projects, games, and certifications.">
   <title>Amjad Alshahri | Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <style>
@@ -133,7 +133,7 @@
   <nav>
     <div class="logo">A.S</div>
     <ul class="nav-links">
-      <li><a href="#about" data-ar="من أنا" data-en="About Me">About Me</a></li>
+      <li><a href="#about" data-ar="من أنا" data-en="About">About</a></li>
       <li><a href="#projects" data-ar="المشاريع" data-en="Projects">Projects</a></li>
       <li><a href="#games" data-ar="الألعاب" data-en="Games">Games</a></li>
       <li><a href="#certificates" data-ar="الشهادات" data-en="Certificates">Certificates</a></li>
@@ -152,7 +152,7 @@
       <div class="hero-tag" data-ar="مرحباً بك في موقعي" data-en="Welcome to my portfolio">Welcome to my portfolio</div>
       <h1 data-ar="أمجاد الشهري" data-en="Amjad Alshahri">Amjad Alshahri</h1>
       <p data-ar="خريجة علوم حاسب وأتطلع للانضمام لبيئة عمل تُنمّي مهاراتي ✨" data-en="A Computer Science graduate looking to join an environment that develops my skills ✨">A Computer Science graduate looking to join an environment that develops my skills ✨</p>
-      <p data-ar="التخصص الفرعي: البرمجة وعلوم الحاسب" data-en="Minor: Programming & Computer Science">Minor: Programming & Computer Science</p>
+      <p data-ar="التخصص: علوم الحاسب | التخصص الفرعي: البرمجة وعلوم الحاسب" data-en="Major: Computer Science | Minor: Programming & Computer Science">Major: Computer Science | Minor: Programming & Computer Science</p>
       <div class="hero-btns">
         <a href="#projects" class="btn-primary" data-ar="اطلع على أعمالي" data-en="View My Work">View My Work</a>
         <a href="#contact" class="btn-outline" data-ar="أبحث عن فرصة لتطوير مهاراتي" data-en="Contact Me">Contact Me</a>
@@ -170,7 +170,7 @@
 
     <div class="reveal">
       <h2 data-ar="مهاراتي" data-en="My Skills" style="margin-bottom:24px;">My Skills</h2>
-      <p class="tab-hint">✦ <span data-ar="اختر قسمًا للاستكشاف." data-en="Click to explore">Click to explore</span></p>
+      <p class="tab-hint">✦ <span data-ar="اضغط على تبويب لعرض المهارات — اضغط مرة ثانية لإغلاقه" data-en="Tap a tab to explore — tap again to close">Tap a tab to explore — tap again to close</span></p>
       <div class="tabs-nav">
         <button class="tab-btn" onclick="switchTab(this,'programming')" data-ar="البرمجة" data-en="Core Programming">Core Programming</button>
         <button class="tab-btn" onclick="switchTab(this,'web')" data-ar="تطوير الويب" data-en="Web Dev">Web Dev</button>
@@ -228,7 +228,6 @@
       <h2 class="reveal" data-ar="مشاريعي" data-en="My Projects">My Projects</h2>
       <div class="cards-grid">
 
-        <!-- Project 1: Personal Portfolio -->
         <div class="project-card reveal">
           <span class="proj-icon">🌐</span>
           <h3 data-ar="موقعي الشخصي" data-en="Personal Portfolio">Personal Portfolio</h3>
@@ -237,7 +236,6 @@
           <a href="#" target="_blank" class="play-btn">🔗 View on GitHub</a>
         </div>
 
-        <!-- Project 2: Beauty Salon — أضيفي الكود لاحقاً -->
         <div class="project-card reveal">
           <span class="proj-icon">💅</span>
           <h3>Beauty Salon Website</h3>
@@ -246,16 +244,6 @@
           <a href="#" target="_blank" class="play-btn">🔗 View on GitHub</a>
         </div>
 
-        <!-- Project 3: مشروع إضافي — أضيفيه لاحقاً -->
-        <!-- 
-        <div class="project-card reveal">
-          <span class="proj-icon">🚀</span>
-          <h3>Project Name</h3>
-          <p>Project description here.</p>
-          <div class="tech-tags"><span class="tech-tag">Tech</span></div>
-          <a href="#" target="_blank" class="play-btn">🔗 View Code</a>
-        </div>
-        -->
 
       </div>
     </div>
@@ -285,7 +273,7 @@
     <div class="full-width-inner">
       <h2 class="reveal" data-ar="شهاداتي" data-en="My Certificates">My Certificates</h2>
       <div class="reveal">
-        <p class="tab-hint">✦ <span data-ar="اختر قسمًا للاستكشاف." data-en="Click to explore">Click to explore</span></p>
+        <p class="tab-hint">✦ <span data-ar="اضغط على تبويب لعرض الشهادات — اضغط مرة ثانية لإغلاقه" data-en="Tap a tab to explore — tap again to close">Tap a tab to explore — tap again to close</span></p>
         <div class="tabs-nav">
           <button class="tab-btn" onclick="switchCertTab(this,'tuwaiq')" data-ar="أكاديمية طويق" data-en="Tuwaiq Academy">Tuwaiq Academy</button>
           <button class="tab-btn" onclick="switchCertTab(this,'google')" data-ar="جوجل" data-en="Google">Google</button>
@@ -410,34 +398,28 @@
       document.getElementById('langBtn').textContent=lang==='ar'?'English':'عربي';
     }
 
-    // Skills tabs — toggle open/close
     let activeSkillTab = null;
     function switchTab(btn, category) {
       if (activeSkillTab === category) {
-        // Same tab clicked — close it
-        document.querySelectorAll('.skill-card').forEach(c => c.classList.add('hidden'));
+          document.querySelectorAll('.skill-card').forEach(c => c.classList.add('hidden'));
         btn.classList.remove('active');
         activeSkillTab = null;
       } else {
-        // New tab — open it
-        document.querySelectorAll('#about .tab-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('#about .tab-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.skill-card').forEach(c => c.classList.toggle('hidden', c.dataset.category !== category));
         btn.classList.add('active');
         activeSkillTab = category;
       }
     }
 
-    // Cert tabs — toggle open/close
     let activeCertTab = null;
     function switchCertTab(btn, category) {
       if (activeCertTab === category) {
-        // Same tab clicked — close it
-        document.querySelectorAll('.cert-card-group').forEach(g => g.classList.add('hidden'));
+          document.querySelectorAll('.cert-card-group').forEach(g => g.classList.add('hidden'));
         btn.classList.remove('active');
         activeCertTab = null;
       } else {
-        // New tab — open it
-        document.querySelectorAll('#certificates .tab-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('#certificates .tab-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.cert-card-group').forEach(g => g.classList.toggle('hidden', g.dataset.cert !== category));
         btn.classList.add('active');
         activeCertTab = category;
